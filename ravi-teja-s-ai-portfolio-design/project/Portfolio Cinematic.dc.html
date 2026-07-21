@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body { background: #05060b; color: #e8eaf2; font-family: 'Sora', system-ui, sans-serif; overflow-x: hidden; }
+  ::selection { background: rgba(96,220,255,0.28); color: #fff; }
+  a { color: #7fe3ff; text-decoration: none; }
+  a:hover { color: #b6f0ff; }
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: #05060b; }
+  ::-webkit-scrollbar-thumb { background: rgba(120,140,200,0.25); border-radius: 8px; }
+  @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  @keyframes dash { to { stroke-dashoffset: -200; } }
+  @keyframes pulseGlow { 0%,100% { opacity: 0.55; } 50% { opacity: 1; } }
+  @keyframes shimmer { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+  @keyframes blink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes gridpan { to { background-position: 60px 60px; } }
+  @media (max-width: 860px) {
+    .grid4 { grid-template-columns: repeat(2, 1fr) !important; }
+    .grid3 { grid-template-columns: 1fr !important; }
+    .grid2 { grid-template-columns: 1fr !important; }
+    .about-grid { grid-template-columns: 1fr !important; }
+  }
+  @media (max-height: 800px) { .scroll-cue { display: none !important; } }
+  @media (max-width: 620px) {
+    .grid4 { grid-template-columns: 1fr !important; }
+    nav .navlinks { display: none !important; }
+  }
+</style>
+</helmet>
+
+<div ref="{{ root }}" style="position: relative; width: 100%; min-height: 100vh;">
+
+  <canvas ref="{{ galaxy }}" style="position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;"></canvas>
+  <div style="position: fixed; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(120% 80% at 50% -10%, rgba(88,70,200,0.22), transparent 55%), radial-gradient(90% 70% at 85% 20%, rgba(0,180,255,0.10), transparent 60%), linear-gradient(180deg, rgba(5,6,11,0) 0%, rgba(5,6,11,0.35) 60%, rgba(5,6,11,0.85) 100%);"></div>
+
+  <!-- scroll progress -->
+  <div style="position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 60; background: transparent;">
+    <div ref="{{ progress }}" style="height: 100%; width: 0%; background: linear-gradient(90deg, #60dcff, #9b8cff, #60dcff); box-shadow: 0 0 14px rgba(96,220,255,0.7);"></div>
+  </div>
+
+  <!-- NAV -->
+  <nav style="position: fixed; top: 18px; left: 50%; transform: translateX(-50%); z-index: 55; display: flex; align-items: center; gap: 8px; padding: 9px 12px 9px 18px; border-radius: 999px; background: rgba(12,14,24,0.55); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,0.09); box-shadow: 0 8px 40px rgba(0,0,0,0.5);">
+    <a href="#hero" style="display: flex; align-items: center; gap: 9px; padding-right: 12px; margin-right: 4px; border-right: 1px solid rgba(255,255,255,0.08);">
+      <span style="width: 26px; height: 26px; border-radius: 8px; background: conic-gradient(from 180deg, #60dcff, #9b8cff, #60dcff); display: inline-flex; align-items: center; justify-content: center; font-family: 'Space Grotesk'; font-weight: 700; color: #05060b; font-size: 14px;">R</span>
+      <span style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 14px; color: #fff; letter-spacing: 0.2px;">Ravi Teja</span>
+    </a>
+    <div style="display: flex; gap: 2px;" class="navlinks">
+      <a href="#about" style="font-size: 13px; color: #aab2c8; padding: 7px 11px; border-radius: 999px;" style-hover="{{ navHover }}">About</a>
+      <a href="#journey" style="font-size: 13px; color: #aab2c8; padding: 7px 11px; border-radius: 999px;" style-hover="{{ navHover }}">Journey</a>
+      <a href="#projects" style="font-size: 13px; color: #aab2c8; padding: 7px 11px; border-radius: 999px;" style-hover="{{ navHover }}">Projects</a>
+      <a href="#architecture" style="font-size: 13px; color: #aab2c8; padding: 7px 11px; border-radius: 999px;" style-hover="{{ navHover }}">Systems</a>
+      <a href="#skills" style="font-size: 13px; color: #aab2c8; padding: 7px 11px; border-radius: 999px;" style-hover="{{ navHover }}">Skills</a>
+      <a href="#contact" style="font-size: 13px; color: #aab2c8; padding: 7px 11px; border-radius: 999px;" style-hover="{{ navHover }}">Contact</a>
+    </div>
+    <a href="https://seekalfred.ai/" target="_blank" rel="noopener" style="font-size: 13px; font-weight: 600; color: #05060b; background: linear-gradient(90deg, #7fe3ff, #b6a9ff); padding: 8px 14px; border-radius: 999px; margin-left: 4px;">SeekAlfred ↗</a>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section id="hero" style="position: relative; z-index: 2; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 80px;">
+    <div data-reveal style="display: inline-flex; align-items: center; gap: 9px; padding: 7px 15px; border-radius: 999px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); font-size: 13px; letter-spacing: 0.4px; color: #b7c0d8; margin-bottom: 34px;">
+      <span style="width: 7px; height: 7px; border-radius: 50%; background: #5ef0b0; box-shadow: 0 0 10px #5ef0b0; animation: pulseGlow 2s infinite;"></span>
+      Senior AI Engineer · Agentic Systems · Available for select work
+    </div>
+    <h1 data-reveal style="font-family: 'Space Grotesk'; font-weight: 700; font-size: clamp(44px, 8.5vw, 116px); line-height: 0.98; letter-spacing: -0.03em; max-width: 15ch; margin: 0 auto;">
+      Engineering AI that
+      <span style="display: block; background: linear-gradient(100deg, #7fe3ff 0%, #b6a9ff 45%, #7fe3ff 90%); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: shimmer 6s linear infinite;">thinks, decides & ships.</span>
+    </h1>
+    <p data-reveal style="margin: 34px auto 0; max-width: 62ch; font-size: clamp(16px, 2vw, 20px); line-height: 1.6; color: #b2bad0; font-weight: 300;">
+      I'm <strong style="color: #fff; font-weight: 500;">Ravi Teja Pasupuleti</strong> — I build agentic AI systems that turn large language models into production-grade decision engines. Not demos. Systems that run.
+    </p>
+    <div data-reveal style="display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 44px;">
+      <a href="#projects" style="display: inline-flex; align-items: center; gap: 9px; font-weight: 600; font-size: 15px; color: #05060b; background: linear-gradient(90deg, #7fe3ff, #b6a9ff); padding: 15px 26px; border-radius: 14px; box-shadow: 0 10px 40px rgba(127,227,255,0.28);" style-hover="{{ ctaHover }}">Explore the work →</a>
+      <a href="#contact" style="display: inline-flex; align-items: center; gap: 9px; font-weight: 500; font-size: 15px; color: #e8eaf2; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.14); padding: 15px 26px; border-radius: 14px; backdrop-filter: blur(10px);" style-hover="{{ ghostHover }}">Get in touch</a>
+    </div>
+    <div data-reveal style="display: flex; gap: 22px; margin-top: 46px; align-items: center;">
+      <a href="https://github.com/Ravi-dsarchitect" target="_blank" rel="noopener" style="color: #96a0ba; font-size: 13.5px; letter-spacing: 0.3px;" style-hover="{{ linkHover }}">GitHub</a>
+      <span style="color: #38405a;">·</span>
+      <a href="https://www.linkedin.com/in/teja01/" target="_blank" rel="noopener" style="color: #96a0ba; font-size: 13.5px; letter-spacing: 0.3px;" style-hover="{{ linkHover }}">LinkedIn</a>
+      <span style="color: #38405a;">·</span>
+      <a href="mailto:prt7036586@gmail.com" style="color: #96a0ba; font-size: 13.5px; letter-spacing: 0.3px;" style-hover="{{ linkHover }}">Email</a>
+    </div>
+    <div class="scroll-cue" style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; color: #6b7590; font-size: 11px; letter-spacing: 2px;">
+      SCROLL
+      <span style="width: 1px; height: 40px; background: linear-gradient(#6b7590, transparent);"></span>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" style="position: relative; z-index: 2; max-width: 1120px; margin: 0 auto; padding: 100px 24px;">
+    <div data-reveal style="{{ eyebrow }}">01 — About</div>
+    <div style="display: grid; grid-template-columns: 1.35fr 1fr; gap: 48px; align-items: start;" class="about-grid">
+      <div data-reveal>
+        <h2 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: clamp(28px, 4vw, 46px); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 22px;">Production AI, from the model to the metal.</h2>
+        <p style="font-size: 17px; line-height: 1.75; color: #aeb6cc; font-weight: 300; margin-bottom: 18px;">I design and ship the full stack of intelligent systems — agentic orchestration with LangGraph, retrieval over vector databases, sub-second voice pipelines, and the serverless AWS infrastructure that keeps them alive under real load.</p>
+        <p style="font-size: 17px; line-height: 1.75; color: #aeb6cc; font-weight: 300;">My work spans <strong style="color:#dfe4f2; font-weight:500;">Agentic AI, LLMs, multi-agent systems, Voice AI, RAG, and enterprise MLOps</strong> — grounded in five years turning research-grade models into products people rely on.</p>
+      </div>
+      <div data-reveal style="display: grid; gap: 14px;">
+        <div style="{{ statCard }}"><div style="font-family:'Space Grotesk'; font-size: 40px; font-weight: 700; background: linear-gradient(90deg,#7fe3ff,#b6a9ff); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">5+</div><div style="color:#939db6; font-size: 13.5px;">years shipping ML &amp; AI in production</div></div>
+        <div style="{{ statCard }}"><div style="font-family:'Space Grotesk'; font-size: 40px; font-weight: 700; background: linear-gradient(90deg,#7fe3ff,#b6a9ff); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">8+</div><div style="color:#939db6; font-size: 13.5px;">enterprise AI systems architected</div></div>
+        <div style="{{ statCard }}"><div style="font-family:'Space Grotesk'; font-size: 40px; font-weight: 700; background: linear-gradient(90deg,#7fe3ff,#b6a9ff); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">500+</div><div style="color:#939db6; font-size: 13.5px;">algorithmic problems solved (LeetCode · StrataScratch)</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ JOURNEY ============ -->
+  <section id="journey" style="position: relative; z-index: 2; max-width: 1120px; margin: 0 auto; padding: 100px 24px;">
+    <div data-reveal style="{{ eyebrow }}">02 — Journey</div>
+    <h2 data-reveal style="{{ h2 }}">The trajectory.</h2>
+    <div style="position: relative; margin-top: 56px;">
+      <div style="position: absolute; left: 19px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(#60dcff, #9b8cff, rgba(155,140,255,0.1));"></div>
+      <div data-reveal style="{{ timelineRow }}">
+        <div style="{{ timelineDot }}"></div>
+        <div style="{{ glass }} flex: 1; padding: 26px 28px;">
+          <div style="display:flex; flex-wrap:wrap; justify-content: space-between; gap: 8px; align-items: baseline;"><h3 style="font-family:'Space Grotesk'; font-size: 22px; font-weight: 600; color: #fff;">Senior AI Engineer</h3><span style="color:#7fe3ff; font-size: 13px; font-family:'JetBrains Mono';">Jan 2025 — Present</span></div>
+          <div style="color:#b6a9ff; font-size: 15px; margin: 4px 0 12px; font-weight: 500;">Ngenux Solutions</div>
+          <p style="color:#aeb6cc; font-size: 15px; line-height: 1.7; font-weight: 300;">Core engineer on <strong style="color:#dfe4f2;font-weight:500;">SeekAlfred</strong>, Ngenux's flagship AI Chief of Staff. Building agentic modules, real-time voice agents, enterprise RAG, Text2SQL and document-intelligence platforms — LangGraph, Bedrock, FastAPI, all on AWS.</p>
+        </div>
+      </div>
+      <div data-reveal style="{{ timelineRow }}">
+        <div style="{{ timelineDot }}"></div>
+        <div style="{{ glass }} flex: 1; padding: 26px 28px;">
+          <div style="display:flex; flex-wrap:wrap; justify-content: space-between; gap: 8px; align-items: baseline;"><h3 style="font-family:'Space Grotesk'; font-size: 22px; font-weight: 600; color: #fff;">Data Scientist</h3><span style="color:#7fe3ff; font-size: 13px; font-family:'JetBrains Mono';">Apr 2023 — Dec 2024</span></div>
+          <div style="color:#b6a9ff; font-size: 15px; margin: 4px 0 12px; font-weight: 500;">GlobalData Plc</div>
+          <p style="color:#aeb6cc; font-size: 15px; line-height: 1.7; font-weight: 300;">Built GPT-powered LangChain agents, fine-tuned Phi-3.5 &amp; BERT served on AWS EKS with autoscaling, and automated trend intelligence — daily buzz-index newsletters and revenue-generating competitive reports across 3,000 companies.</p>
+        </div>
+      </div>
+      <div data-reveal style="{{ timelineRow }}">
+        <div style="{{ timelineDot }}"></div>
+        <div style="{{ glass }} flex: 1; padding: 26px 28px;">
+          <div style="display:flex; flex-wrap:wrap; justify-content: space-between; gap: 8px; align-items: baseline;"><h3 style="font-family:'Space Grotesk'; font-size: 22px; font-weight: 600; color: #fff;">Data Scientist</h3><span style="color:#7fe3ff; font-size: 13px; font-family:'JetBrains Mono';">Aug 2021 — Apr 2023</span></div>
+          <div style="color:#b6a9ff; font-size: 15px; margin: 4px 0 12px; font-weight: 500;">Tata Consultancy Services</div>
+          <p style="color:#aeb6cc; font-size: 15px; line-height: 1.7; font-weight: 300;">Productionized ML forecasting for a Coca-Cola bottling partner — LightGBM + LSTM / Temporal Fusion ensembles on SageMaker that lifted forecast accuracy from ~70% to ~90% and cut stockouts ~25%. Plus XGBoost churn models for retail clients.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERTISE ============ -->
+  <section id="expertise" style="position: relative; z-index: 2; max-width: 1120px; margin: 0 auto; padding: 100px 24px;">
+    <div data-reveal style="{{ eyebrow }}">03 — Technical Expertise</div>
+    <h2 data-reveal style="{{ h2 }}">What I go deep on.</h2>
+    <div data-reveal style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px;" class="grid3">
+      <div data-tilt style="{{ pillar }}"><div style="{{ pillarIcon }}">◇</div><h3 style="{{ pillarH }}">Agentic AI</h3><p style="{{ pillarP }}">Multi-agent orchestration, tool-calling, planning &amp; self-correction with LangGraph and OpenAI Agents.</p></div>
+      <div data-tilt style="{{ pillar }}"><div style="{{ pillarIcon }}">❋</div><h3 style="{{ pillarH }}">LLMs &amp; RAG</h3><p style="{{ pillarP }}">Retrieval over PGVector, OpenSearch, Chroma &amp; Pinecone. Bedrock, Claude, OpenAI, Gemini in production.</p></div>
+      <div data-tilt style="{{ pillar }}"><div style="{{ pillarIcon }}">◈</div><h3 style="{{ pillarH }}">Voice AI</h3><p style="{{ pillarP }}">Sub-second streaming STT → LLM → TTS pipelines over LiveKit WebRTC with barge-in &amp; interruption handling.</p></div>
+      <div data-tilt style="{{ pillar }}"><div style="{{ pillarIcon }}">▤</div><h3 style="{{ pillarH }}">Enterprise Data</h3><p style="{{ pillarP }}">Text2SQL, document intelligence &amp; NL querying across Postgres, Mongo, DynamoDB via MCP.</p></div>
+      <div data-tilt style="{{ pillar }}"><div style="{{ pillarIcon }}">☁</div><h3 style="{{ pillarH }}">AWS &amp; MLOps</h3><p style="{{ pillarP }}">ECS, Lambda, SageMaker, Bedrock, Glue, Athena, Step Functions — serverless, event-driven, cost-aware.</p></div>
+      <div data-tilt style="{{ pillar }}"><div style="{{ pillarIcon }}">◧</div><h3 style="{{ pillarH }}">ML &amp; Forecasting</h3><p style="{{ pillarP }}">Deep learning, time-series (LSTM / TFT), gradient boosting &amp; classical modeling at production scale.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section id="projects" style="position: relative; z-index: 2; max-width: 1120px; margin: 0 auto; padding: 100px 24px;">
+    <div data-reveal style="{{ eyebrow }}">04 — Featured Projects</div>
+    <h2 data-reveal style="{{ h2 }}">Systems in production.</h2>
+
+    <!-- Flagship SeekAlfred -->
+    <a data-reveal data-tilt href="https://seekalfred.ai/" target="_blank" rel="noopener" style="display:block; margin-top: 48px; position: relative; overflow: hidden; border-radius: 24px; border: 1px solid rgba(127,227,255,0.22); background: linear-gradient(135deg, rgba(20,30,55,0.75), rgba(12,14,24,0.6)); backdrop-filter: blur(16px); padding: 46px 44px; box-shadow: 0 30px 90px rgba(0,0,0,0.5);">
+      <div data-glare style="position:absolute; inset:0; opacity:0; transition:opacity .3s; pointer-events:none; border-radius:24px;"></div>
+      <div style="position:absolute; top:-40%; right:-10%; width: 520px; height: 520px; background: radial-gradient(circle, rgba(127,227,255,0.16), transparent 65%); pointer-events:none;"></div>
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom: 20px;">
+        <span style="font-size:11px; letter-spacing:2px; color:#5ef0b0; font-family:'JetBrains Mono'; padding: 5px 12px; border-radius: 999px; border: 1px solid rgba(94,240,176,0.35); background: rgba(94,240,176,0.08);">● FLAGSHIP · LIVE</span>
+        <span style="color:#7fe3ff; font-size: 13px;">seekalfred.ai ↗</span>
+      </div>
+      <h3 style="font-family:'Space Grotesk'; font-size: clamp(28px,4vw,44px); font-weight: 700; color:#fff; letter-spacing:-0.02em; max-width: 20ch;">SeekAlfred — the AI Chief of Staff for the C-suite.</h3>
+      <p style="margin-top: 18px; max-width: 72ch; font-size: 17px; line-height: 1.7; color:#b6bed4; font-weight: 300;">Unifies fragmented signals across the marketing &amp; revenue stack — Google Ads, Meta, LinkedIn Ads, HubSpot — into decision-ready recommendations. I built the agentic modules for <strong style="color:#e6ebf7;font-weight:500;">Spend-Mix Optimization</strong>, <strong style="color:#e6ebf7;font-weight:500;">Creative Fatigue Detection</strong> and an <strong style="color:#e6ebf7;font-weight:500;">AI Visibility Score</strong>.</p>
+      <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top: 24px;">
+        <span style="{{ chip }}">LangGraph</span><span style="{{ chip }}">PGVector</span><span style="{{ chip }}">FastAPI</span><span style="{{ chip }}">AWS ECS</span><span style="{{ chip }}">API Gateway</span><span style="{{ chip }}">Multi-Agent</span>
+      </div>
+    </a>
+
+    <!-- ===== Ngenux group ===== -->
+    <div data-reveal style="{{ groupHead }}">
+      <h3 style="{{ groupH }}">Ngenux Solutions</h3>
+      <span style="{{ groupLine }}"></span>
+      <span style="{{ groupMeta }}">Senior AI Engineer · 2025 — Now</span>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(2,1fr); gap: 16px;" class="grid2">
+
+      <div data-reveal data-tilt style="{{ projCard }}">
+        <div style="{{ projTop }}"><span style="{{ projTag }}">Voice AI</span><span style="{{ projStatus }}">Private Enterprise</span></div>
+        <h3 style="{{ projH }}">Voice2Voice AI Agent</h3>
+        <p style="{{ projP }}">A real-time voice agent you can actually talk over. Sub-second streaming STT → LLM → TTS on LiveKit WebRTC, with VAD barge-in so it stops the instant you interrupt — built for support &amp; lead-qualification calls.</p>
+        <div style="{{ projChips }}"><span style="{{ chip }}">Claude Sonnet 4.5</span><span style="{{ chip }}">Sarvam AI</span><span style="{{ chip }}">LiveKit</span><span style="{{ chip }}">Redis</span><span style="{{ chip }}">FastAPI · ECS</span></div>
+      </div>
+
+      <div data-reveal data-tilt style="{{ projCard }}">
+        <div style="{{ projTop }}"><span style="{{ projTag }}">Agentic RAG</span><span style="{{ projStatus }}">Private Enterprise</span></div>
+        <h3 style="{{ projH }}">Enterprise RAG Platform</h3>
+        <p style="{{ projP }}">An EdTech support agent that answers from company docs, hands off to a human in real time when it should, and files the Salesforce ticket itself. Bedrock models grounded on an OpenSearch vector store.</p>
+        <div style="{{ projChips }}"><span style="{{ chip }}">LangGraph</span><span style="{{ chip }}">Bedrock</span><span style="{{ chip }}">OpenSearch</span><span style="{{ chip }}">Lambda</span><span style="{{ chip }}">DynamoDB</span></div>
+      </div>
+
+      <div data-reveal data-tilt style="{{ projCard }}">
+        <div style="{{ projTop }}"><span style="{{ projTag }}">Enterprise Data</span><span style="{{ projStatus }}">Case study on request</span></div>
+        <h3 style="{{ projH }}">Enterprise Text2SQL</h3>
+        <p style="{{ projP }}">Lets a logistics team ask questions in plain English and get the SQL — and the answer. A self-correcting loop retries failed queries until they run, putting BI in everyone's hands.</p>
+        <div style="{{ impact }}">◆ 80% natural-language → SQL accuracy</div>
+        <div style="{{ projChips }}"><span style="{{ chip }}">Bedrock</span><span style="{{ chip }}">Athena · Glue</span><span style="{{ chip }}">Neptune</span><span style="{{ chip }}">PGVector</span></div>
+      </div>
+
+      <div data-reveal data-tilt style="{{ projCard }}">
+        <div style="{{ projTop }}"><span style="{{ projTag }}">Document AI</span><span style="{{ projStatus }}">Private Enterprise</span></div>
+        <h3 style="{{ projH }}">Document Intelligence</h3>
+        <p style="{{ projP }}">Drop a document in S3 and it's automatically classified and its data extracted — no queue backups. A multi-threaded SQS listener on ECS fans work into a multi-engine GenAI framework; results land in Aurora.</p>
+        <div style="{{ projChips }}"><span style="{{ chip }}">Gemini</span><span style="{{ chip }}">SQS · ECS</span><span style="{{ chip }}">Aurora</span><span style="{{ chip }}">Parameter Store</span></div>
+      </div>
+
+      <div data-reveal data-tilt style="{{ projCard }}">
+        <div style="{{ projTop }}"><span style="{{ projTag }}">Agentic Search</span><span style="{{ projStatus }}">Private Enterprise</span></div>
+        <h3 style="{{ projH }}">Ngen Studio · AI Studio</h3>
+        <p style="{{ projP }}">Enterprise search across everything a company already uses. OpenAI Agents route queries across Drive, S3 &amp; OneDrive, and let you ask Postgres, MySQL, Mongo &amp; DynamoDB in natural language via MCP.</p>
+        <div style="{{ projChips }}"><span style="{{ chip }}">OpenAI Agents</span><span style="{{ chip }}">MCP</span><span style="{{ chip }}">FastAPI</span><span style="{{ chip }}">EC2 · Docker</span></div>
+      </div>
+
+      <div data-reveal data-tilt style="{{ projCard }}">
+        <div style="{{ projTop }}"><span style="{{ projTag }}">Voice Analytics</span><span style="{{ projStatus }}">Case study on request</span></div>
+        <h3 style="{{ projH }}">Sales Call Analytics</h3>
+        <p style="{{ projP }}">Turns raw e-commerce sales calls into coaching insight. Whisper + NVIDIA NeMo separate who said what, Bedrock extracts the signals, and it all surfaces in a live Plotly Dash dashboard.</p>
+        <div style="{{ projChips }}"><span style="{{ chip }}">Whisper</span><span style="{{ chip }}">NVIDIA NeMo</span><span style="{{ chip }}">Bedrock</span><span style="{{ chip }}">Plotly Dash · ECS</span></div>
+      </div>
+
+      <div data-reveal data-tilt style="{{ projCard }}">
+        <div style="{{ projTop }}"><span style="{{ projTag }}">ML System</span><span style="{{ projStatus }}">Case study on request</span></div>
+        <h3 style="{{ projH }}">Student Churn Prediction</h3>
+        <p style="{{ projP }}">Flags students likely to drop off before they do, so an EdTech client can step in early. SageMaker trains the model and scores thousands of records on a weekly schedule.</p>
+        <div style="{{ impact }}">◆ −35% churn in one quarter · 5K+ records / week</div>
+        <div style="{{ projChips }}"><span style="{{ chip }}">SageMaker</span><span style="{{ chip }}">S3</span><span style="{{ chip }}">Classification</span></div>
+      </div>
+
+    </div>
+
+    <!-- ===== GlobalData group ===== -->
+    <div data-reveal style="{{ groupHead }}">
+      <h3 style="{{ groupH }}">GlobalData Plc</h3>
+      <span style="{{ groupLine }}"></span>
+      <span style="{{ groupMeta }}">Data Scientist · 2023 — 2024</span>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(2,1fr); gap: 16px;" class="grid2">
+
+      <div data-reveal data-tilt style="{{ projCard }}">
+        <div style="{{ projTop }}"><span style="{{ projTag }}">LLM Agent</span><span style="{{ projStatus }}">Private Enterprise</span></div>
+        <h3 style="{{ projH }}">GPT Research Agent</h3>
+        <p style="{{ projP }}">Ask about any company or topic and get a full analysis. A GPT planner breaks the question down and a LangChain agent runs the right functions, pulling live data from the backend into one report.</p>
+        <div style="{{ projChips }}"><span style="{{ chip }}">LangChain</span><span style="{{ chip }}">GPT</span><span style="{{ chip }}">Streamlit</span><span style="{{ chip }}">Lambda · API GW</span></div>
+      </div>
+
+      <div data-reveal data-tilt style="{{ projCard }}">
+        <div style="{{ projTop }}"><span style="{{ projTag }}">Fine-tuning · MLOps</span><span style="{{ projStatus }}">Case study on request</span></div>
+        <h3 style="{{ projH }}">LLM Fine-tuning &amp; Serving</h3>
+        <p style="{{ projP }}">Custom models for social intelligence: Phi-3.5 fine-tuned to summarize tweets and BERT to classify tweets &amp; Reddit posts — served as Dockerized FastAPI on EKS with pod autoscaling behind an ALB.</p>
+        <div style="{{ projChips }}"><span style="{{ chip }}">Phi-3.5</span><span style="{{ chip }}">BERT</span><span style="{{ chip }}">EKS · HPA</span><span style="{{ chip }}">FastAPI</span></div>
+      </div>
+
+      <div data-reveal data-tilt style="{{ projCard }}">
+        <div style="{{ projTop }}"><span style="{{ projTag }}">NLP · Automation</span><span style="{{ projStatus }}">Private Enterprise</span></div>
+        <h3 style="{{ projH }}">Trend Intelligence Engine</h3>
+        <p style="{{ projP }}">A daily newsletter that writes itself — the top-10 trending companies, concepts and hashtags ranked by a buzz index, with summarized tweets and an auto-generated Trend Pulse deck per company.</p>
+        <div style="{{ projChips }}"><span style="{{ chip }}">NLP</span><span style="{{ chip }}">Summarization</span><span style="{{ chip }}">Automation</span></div>
+      </div>
+
+      <div data-reveal data-tilt style="{{ projCard }}">
+        <div style="{{ projTop }}"><span style="{{ projTag }}">Data Automation</span><span style="{{ projStatus }}">Case study on request</span></div>
+        <h3 style="{{ projH }}">Automated Competitive Reports</h3>
+        <p style="{{ projP }}">A Selenium pipeline that mines Twitter &amp; YouTube data and auto-builds quarterly competitive reports — the kind of manual research work that used to take a team, run end-to-end.</p>
+        <div style="{{ impact }}">◆ 3,000 companies covered per quarter</div>
+        <div style="{{ projChips }}"><span style="{{ chip }}">Selenium</span><span style="{{ chip }}">Python</span><span style="{{ chip }}">Reporting</span></div>
+      </div>
+
+    </div>
+
+    <!-- ===== TCS group ===== -->
+    <div data-reveal style="{{ groupHead }}">
+      <h3 style="{{ groupH }}">Tata Consultancy Services</h3>
+      <span style="{{ groupLine }}"></span>
+      <span style="{{ groupMeta }}">Data Scientist · 2021 — 2023</span>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(2,1fr); gap: 16px;" class="grid2">
+
+      <div data-reveal data-tilt style="{{ projCard }}">
+        <div style="{{ projTop }}"><span style="{{ projTag }}">Forecasting</span><span style="{{ projStatus }}">Case study on request</span></div>
+        <h3 style="{{ projH }}">Coca-Cola Demand Forecasting</h3>
+        <p style="{{ projP }}">Predicts sales for every SKU × store × week for a Coca-Cola bottling partner. LightGBM + LSTM / Temporal Fusion ensembles learn from promotions, weather and holidays, orchestrated by Step Functions.</p>
+        <div style="{{ impact }}">◆ ~70% → ~90% accuracy · −25% stockouts</div>
+        <div style="{{ projChips }}"><span style="{{ chip }}">LightGBM</span><span style="{{ chip }}">LSTM · TFT</span><span style="{{ chip }}">SageMaker</span><span style="{{ chip }}">Step Functions</span></div>
+      </div>
+
+      <div data-reveal data-tilt style="{{ projCard }}">
+        <div style="{{ projTop }}"><span style="{{ projTag }}">Classification</span><span style="{{ projStatus }}">Case study on request</span></div>
+        <h3 style="{{ projH }}">Retail Churn Prediction</h3>
+        <p style="{{ projP }}">Identifies at-risk customers for a retail client so retention teams can act early. An XGBoost model with heavy feature engineering and interpretability to explain every flag.</p>
+        <div style="{{ impact }}">◆ −15% churn · higher customer lifetime value</div>
+        <div style="{{ projChips }}"><span style="{{ chip }}">XGBoost</span><span style="{{ chip }}">Feature Eng.</span><span style="{{ chip }}">Interpretability</span></div>
+      </div>
+
+      <div data-reveal data-tilt style="{{ projCard }}">
+        <div style="{{ projTop }}"><span style="{{ projTag }}">Forecasting</span><span style="{{ projStatus }}">Case study on request</span></div>
+        <h3 style="{{ projH }}">Retail Demand Forecasting</h3>
+        <p style="{{ projP }}">Weekly product-demand forecasts from historical sales, promotions and external factors, wired straight into inventory optimization so the right stock is in the right store.</p>
+        <div style="{{ impact }}">◆ +23% forecast accuracy · −15% cost</div>
+        <div style="{{ projChips }}"><span style="{{ chip }}">LSTM</span><span style="{{ chip }}">Time Series</span><span style="{{ chip }}">Inventory Opt.</span></div>
+      </div>
+
+      <div data-reveal data-tilt style="{{ projCard }} display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; border-style:dashed; background:rgba(255,255,255,0.015);">
+        <div style="font-size:26px; color:#6b7590; margin-bottom:10px;">＋</div>
+        <h3 style="{{ projH }} margin-bottom:6px;">More on the way</h3>
+        <p style="{{ projP }} margin-bottom:0;">New products are being added over time. This slot is reserved so the portfolio grows without a redesign.</p>
+      </div>
+
+    </div>
+
+    <p data-reveal style="text-align:center; margin-top: 34px; font-size: 14px; color:#828ca6;">Every system above runs in production — <span style="color:#b6a9ff;">SeekAlfred is the only one with a public deployment today.</span></p>
+  </section>
+
+  <!-- ============ ARCHITECTURE ============ -->
+  <section id="architecture" style="position: relative; z-index: 2; max-width: 1120px; margin: 0 auto; padding: 100px 24px;">
+    <div data-reveal style="{{ eyebrow }}">05 — Architecture Showcase</div>
+    <h2 data-reveal style="{{ h2 }}">How the systems are wired.</h2>
+    <p data-reveal style="max-width: 60ch; margin-top: 16px; color:#aeb6cc; font-size: 16px; line-height: 1.7; font-weight: 300;">Interactive reference architectures — pulses flow along live data paths. Pick a system.</p>
+
+    <div data-reveal style="display:flex; flex-wrap:wrap; gap: 8px; margin-top: 34px;">
+      <sc-for list="{{ archTabs }}" as="tab" hint-placeholder-count="5">
+        <button onClick="{{ tab.onClick }}" style="{{ tab.style }}">{{ tab.label }}</button>
+      </sc-for>
+    </div>
+
+    <div style="{{ glass }} margin-top: 18px; padding: 12px; border-radius: 22px; overflow: hidden;">
+      <div style="padding: 14px 18px 4px; display:flex; align-items:center; gap:10px;">
+        <span style="width:9px;height:9px;border-radius:50%;background:#ff5f57;"></span>
+        <span style="width:9px;height:9px;border-radius:50%;background:#febc2e;"></span>
+        <span style="width:9px;height:9px;border-radius:50%;background:#28c840;"></span>
+        <span style="margin-left:8px; font-family:'JetBrains Mono'; font-size: 12.5px; color:#8b95af;">{{ archTitle }}</span>
+      </div>
+      <div style="width: 100%;">{{ archDiagram }}</div>
+      <div style="padding: 4px 18px 16px; color:#9aa3bd; font-size: 14px; line-height: 1.6; font-weight: 300;">{{ archCaption }}</div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section id="skills" style="position: relative; z-index: 2; max-width: 1120px; margin: 0 auto; padding: 100px 24px;">
+    <div data-reveal style="{{ eyebrow }}">06 — Skills Ecosystem</div>
+    <h2 data-reveal style="{{ h2 }}">The stack, alive.</h2>
+    <div data-reveal style="display:grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-top: 46px;" class="grid4">
+      <sc-for list="{{ skills }}" as="s" hint-placeholder-count="16">
+        <div style="{{ skillCard }}" style-hover="{{ skillHover }}">
+          <div style="font-family:'Space Grotesk'; font-size: 15px; font-weight: 600; color:#e8eaf2;">{{ s.name }}</div>
+          <div style="font-size: 12px; color:#8b95af; margin-top: 3px;">{{ s.cat }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ============ TECH STACK ============ -->
+  <section id="stack" style="position: relative; z-index: 2; max-width: 1120px; margin: 0 auto; padding: 60px 24px 100px;">
+    <div data-reveal style="{{ eyebrow }}">07 — Tech Stack</div>
+    <h2 data-reveal style="{{ h2 }}">Tools of the trade.</h2>
+    <div data-reveal style="display:flex; flex-wrap:wrap; gap: 10px; margin-top: 40px;">
+      <sc-for list="{{ stack }}" as="t" hint-placeholder-count="22">
+        <span style="{{ stackChip }}" style-hover="{{ stackChipHover }}">{{ t }}</span>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE + EDUCATION ============ -->
+  <section id="experience" style="position: relative; z-index: 2; max-width: 1120px; margin: 0 auto; padding: 40px 24px 100px;">
+    <div data-reveal style="{{ eyebrow }}">08 — Experience &amp; Education</div>
+    <div style="display:grid; grid-template-columns: 1.4fr 1fr; gap: 40px; margin-top: 30px;" class="about-grid">
+      <div data-reveal>
+        <h2 style="{{ h2small }}">Where I've built</h2>
+        <div style="display:grid; gap: 12px; margin-top: 22px;">
+          <div style="{{ glass }} padding: 20px 22px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;"><div><div style="color:#fff; font-weight:600; font-family:'Space Grotesk';">Ngenux Solutions</div><div style="color:#9aa3bd; font-size:14px; margin-top:2px;">Senior AI Engineer</div></div><span style="color:#7fe3ff; font-size:12.5px; font-family:'JetBrains Mono'; white-space:nowrap;">2025 — Now</span></div>
+          <div style="{{ glass }} padding: 20px 22px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;"><div><div style="color:#fff; font-weight:600; font-family:'Space Grotesk';">GlobalData Plc</div><div style="color:#9aa3bd; font-size:14px; margin-top:2px;">Data Scientist</div></div><span style="color:#7fe3ff; font-size:12.5px; font-family:'JetBrains Mono'; white-space:nowrap;">2023 — 2024</span></div>
+          <div style="{{ glass }} padding: 20px 22px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;"><div><div style="color:#fff; font-weight:600; font-family:'Space Grotesk';">Tata Consultancy Services</div><div style="color:#9aa3bd; font-size:14px; margin-top:2px;">Data Scientist</div></div><span style="color:#7fe3ff; font-size:12.5px; font-family:'JetBrains Mono'; white-space:nowrap;">2021 — 2023</span></div>
+        </div>
+      </div>
+      <div data-reveal>
+        <h2 style="{{ h2small }}">Education</h2>
+        <div style="display:grid; gap: 12px; margin-top: 22px;">
+          <div style="{{ glass }} padding: 20px 22px;"><div style="color:#fff; font-weight:600; font-family:'Space Grotesk';">Full Stack Data Science</div><div style="color:#9aa3bd; font-size:14px; margin-top:2px;">iNeuron</div></div>
+          <div style="{{ glass }} padding: 20px 22px;"><div style="color:#fff; font-weight:600; font-family:'Space Grotesk';">B.Tech · Electrical &amp; Electronics</div><div style="color:#9aa3bd; font-size:14px; margin-top:2px;">Sagi Rama Krishnam Raju Engineering College · 2017–2021</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CERTS + ACHIEVEMENTS + OSS + SPEAKING + BLOG ============ -->
+  <section id="more" style="position: relative; z-index: 2; max-width: 1120px; margin: 0 auto; padding: 20px 24px 100px;">
+    <div data-reveal style="{{ eyebrow }}">09 — Credentials &amp; Community</div>
+    <div style="display:grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 30px;" class="grid3">
+      <div data-reveal style="{{ glass }} padding: 26px;">
+        <div style="{{ miniHead }}">Certifications</div>
+        <div style="display:grid; gap:12px; margin-top:16px;">
+          <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:#5ef0b0;">✦</span><div><div style="color:#e8eaf2; font-size:14.5px; font-weight:500;">Azure Data Fundamentals</div><div style="color:#828ca6; font-size:12.5px;">Microsoft</div></div></div>
+          <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:#5ef0b0;">✦</span><div><div style="color:#e8eaf2; font-size:14.5px; font-weight:500;">Data Scientist Certificate</div><div style="color:#828ca6; font-size:12.5px;">DataCamp</div></div></div>
+        </div>
+      </div>
+      <div data-reveal style="{{ glass }} padding: 26px;">
+        <div style="{{ miniHead }}">Achievements</div>
+        <div style="display:grid; gap:12px; margin-top:16px;">
+          <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:#7fe3ff;">▲</span><div><div style="color:#e8eaf2; font-size:14.5px; font-weight:500;">300+ LeetCode problems</div><div style="color:#828ca6; font-size:12.5px;">Data structures &amp; algorithms</div></div></div>
+          <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:#7fe3ff;">▲</span><div><div style="color:#e8eaf2; font-size:14.5px; font-weight:500;">200+ StrataScratch problems</div><div style="color:#828ca6; font-size:12.5px;">SQL &amp; data analytics</div></div></div>
+        </div>
+      </div>
+      <div data-reveal style="{{ glass }} padding: 26px;">
+        <div style="{{ miniHead }}">Open Source &amp; Speaking</div>
+        <div style="display:grid; gap:12px; margin-top:16px;">
+          <a href="https://github.com/Ravi-dsarchitect" target="_blank" rel="noopener" style="display:flex; gap:10px; align-items:flex-start;"><span style="color:#b6a9ff;">◐</span><div><div style="color:#e8eaf2; font-size:14.5px; font-weight:500;">GitHub — @Ravi-dsarchitect</div><div style="color:#828ca6; font-size:12.5px;">Experiments &amp; references ↗</div></div></a>
+          <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:#6b7590;">◑</span><div><div style="color:#aeb6cc; font-size:14.5px; font-weight:500;">Talks &amp; writing</div><div style="color:#828ca6; font-size:12.5px;">Coming soon</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Blog placeholder -->
+    <div data-reveal style="{{ glass }} margin-top:16px; padding: 30px 32px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;">
+      <div>
+        <div style="{{ miniHead }}">Writing / Blog</div>
+        <p style="color:#aeb6cc; font-size:15px; margin-top:8px; font-weight:300; max-width: 60ch;">Deep dives on agentic architectures, voice pipelines and production RAG are on the way. This space is reserved.</p>
+      </div>
+      <span style="font-size:12px; letter-spacing:2px; color:#828ca6; font-family:'JetBrains Mono'; padding: 8px 16px; border-radius:999px; border:1px solid rgba(255,255,255,0.12);">COMING SOON</span>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT / TERMINAL ============ -->
+  <section id="contact" style="position: relative; z-index: 2; max-width: 1120px; margin: 0 auto; padding: 40px 24px 60px;">
+    <div data-reveal style="{{ eyebrow }}">10 — Contact</div>
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items:center; margin-top: 20px;" class="about-grid">
+      <div data-reveal>
+        <h2 style="font-family:'Space Grotesk'; font-weight:700; font-size: clamp(30px,4.5vw,54px); line-height:1.05; letter-spacing:-0.02em;">Let's build something<br><span style="background: linear-gradient(90deg,#7fe3ff,#b6a9ff); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;">that actually ships.</span></h2>
+        <p style="color:#aeb6cc; font-size:16px; line-height:1.7; margin-top:18px; font-weight:300; max-width:52ch;">Recruiters, founders, CTOs — if you're building production AI, I'd like to hear about it.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:28px;">
+          <a href="mailto:prt7036586@gmail.com" style="display:inline-flex; align-items:center; gap:9px; font-weight:600; font-size:15px; color:#05060b; background:linear-gradient(90deg,#7fe3ff,#b6a9ff); padding:14px 24px; border-radius:14px;" style-hover="{{ ctaHover }}">Email me →</a>
+          <a href="https://www.linkedin.com/in/teja01/" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:9px; font-weight:500; font-size:15px; color:#e8eaf2; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.14); padding:14px 24px; border-radius:14px;" style-hover="{{ ghostHover }}">LinkedIn</a>
+        </div>
+      </div>
+      <div data-reveal ref="{{ termWrap }}" style="{{ glass }} padding: 0; border-radius: 16px; overflow:hidden; font-family:'JetBrains Mono';">
+        <div style="padding: 12px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid rgba(255,255,255,0.07); background: rgba(255,255,255,0.02);">
+          <span style="width:11px;height:11px;border-radius:50%;background:#ff5f57;"></span>
+          <span style="width:11px;height:11px;border-radius:50%;background:#febc2e;"></span>
+          <span style="width:11px;height:11px;border-radius:50%;background:#28c840;"></span>
+          <span style="margin-left:8px; font-size:12px; color:#8b95af;">ravi@portfolio ~ %</span>
+        </div>
+        <div ref="{{ term }}" style="padding: 20px 20px 24px; font-size: 13.5px; line-height: 1.9; color:#c6cde0; min-height: 240px;"></div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top: 70px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.06); color:#6b7590; font-size:13px;">
+      © 2026 Ravi Teja Pasupuleti · Built as an experience, not a résumé.
+    </div>
+  </section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900},&quot;showGalaxy&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Experience&quot;,&quot;label&quot;:&quot;3D particle galaxy background&quot;},&quot;galaxyDensity&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1,&quot;min&quot;:0.3,&quot;max&quot;:1.6,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Experience&quot;,&quot;label&quot;:&quot;Galaxy particle density&quot;},&quot;defaultArch&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;agentic&quot;,&quot;options&quot;:[&quot;agentic&quot;,&quot;rag&quot;,&quot;voice&quot;,&quot;text2sql&quot;,&quot;docintel&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Experience&quot;,&quot;label&quot;:&quot;Architecture shown first&quot;}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { activeArch: (props && props.defaultArch) || 'agentic' };
+  }
+
+  // ---------- shared style tokens (returned as strings, used on static markup) ----------
+  get tokens() {
+    return {
+      eyebrow: "display:inline-block; font-family:'JetBrains Mono'; font-size:12.5px; letter-spacing:3px; color:#7fe3ff; text-transform:uppercase; margin-bottom:18px;",
+      h2: "font-family:'Space Grotesk'; font-weight:600; font-size:clamp(28px,4.4vw,52px); line-height:1.06; letter-spacing:-0.025em;",
+      h2small: "font-family:'Space Grotesk'; font-weight:600; font-size:22px; color:#fff;",
+      glass: "background:rgba(255,255,255,0.035); border:1px solid rgba(255,255,255,0.08); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-radius:18px;",
+      statCard: "background:rgba(255,255,255,0.035); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:22px 24px; backdrop-filter:blur(12px);",
+      timelineRow: "position:relative; display:flex; gap:26px; padding-left:52px; margin-bottom:20px;",
+      timelineDot: "position:absolute; left:11px; top:26px; width:18px; height:18px; border-radius:50%; background:#0a0d18; border:2px solid #60dcff; box-shadow:0 0 16px rgba(96,220,255,0.7);",
+      pillar: "background:rgba(255,255,255,0.035); border:1px solid rgba(255,255,255,0.08); border-radius:18px; padding:28px 26px; transition:transform .4s cubic-bezier(.2,.8,.2,1), border-color .4s;",
+      pillarIcon: "font-size:26px; color:#7fe3ff; margin-bottom:16px;",
+      pillarH: "font-family:'Space Grotesk'; font-size:19px; font-weight:600; color:#fff; margin-bottom:8px;",
+      pillarP: "font-size:14.5px; line-height:1.65; color:#9aa3bd; font-weight:300;",
+      chip: "font-family:'JetBrains Mono'; font-size:12px; color:#c6cde0; padding:6px 11px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.09);",
+      projCard: "background:rgba(255,255,255,0.032); border:1px solid rgba(255,255,255,0.08); border-radius:20px; padding:28px 28px 30px; backdrop-filter:blur(14px); transition:transform .45s cubic-bezier(.2,.8,.2,1), border-color .45s, box-shadow .45s;",
+      projTop: "display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:16px;",
+      projTag: "font-family:'JetBrains Mono'; font-size:11px; letter-spacing:1.5px; color:#b6a9ff; text-transform:uppercase;",
+      projStatus: "font-size:11px; letter-spacing:0.5px; color:#828ca6; padding:4px 10px; border-radius:999px; border:1px solid rgba(255,255,255,0.1);",
+      projH: "font-family:'Space Grotesk'; font-size:22px; font-weight:600; color:#fff; margin-bottom:10px;",
+      projP: "font-size:14.5px; line-height:1.7; color:#a3abc2; font-weight:300; margin-bottom:18px;",
+      projChips: "display:flex; flex-wrap:wrap; gap:7px;",
+      skillCard: "background:rgba(255,255,255,0.035); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:18px 18px; transition:transform .35s cubic-bezier(.2,.8,.2,1), border-color .35s, background .35s;",
+      stackChip: "font-family:'JetBrains Mono'; font-size:13px; color:#c6cde0; padding:10px 16px; border-radius:11px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); transition:transform .3s, color .3s, border-color .3s;",
+      miniHead: "font-family:'Space Grotesk'; font-size:16px; font-weight:600; color:#fff;",
+      groupHead: "display:flex; align-items:baseline; gap:16px; margin:52px 0 18px; flex-wrap:wrap;",
+      groupH: "font-family:'Space Grotesk'; font-size:20px; font-weight:600; color:#fff;",
+      groupLine: "flex:1; min-width:30px; height:1px; background:linear-gradient(90deg, rgba(255,255,255,0.16), transparent);",
+      groupMeta: "font-family:'JetBrains Mono'; font-size:12px; color:#7fe3ff; white-space:nowrap;",
+      impact: "display:inline-block; font-family:'JetBrains Mono'; font-size:12.5px; color:#5ef0b0; background:rgba(94,240,176,0.08); border:1px solid rgba(94,240,176,0.22); padding:6px 11px; border-radius:9px; margin-bottom:16px;",
+    };
+  }
+
+  get hovers() {
+    return {
+      navHover: { color: '#fff', background: 'rgba(255,255,255,0.07)' },
+      ctaHover: { transform: 'translateY(-2px)', boxShadow: '0 16px 50px rgba(127,227,255,0.4)' },
+      ghostHover: { background: 'rgba(255,255,255,0.1)', borderColor: 'rgba(255,255,255,0.25)' },
+      linkHover: { color: '#e8eaf2' },
+      flagHover: { transform: 'translateY(-4px)', borderColor: 'rgba(127,227,255,0.45)' },
+      skillHover: { transform: 'translateY(-4px)', borderColor: 'rgba(127,227,255,0.4)', background: 'rgba(127,227,255,0.06)' },
+      stackChipHover: { transform: 'translateY(-3px)', color: '#fff', borderColor: 'rgba(127,227,255,0.5)' },
+    };
+  }
+
+  // ---------- architecture diagrams ----------
+  archData() {
+    return {
+      agentic: {
+        title: 'agentic-orchestration.svg',
+        caption: 'SeekAlfred / EdTech agent — a LangGraph planner routes to specialist tools, grounds on vector retrieval, and self-corrects before returning decision-ready output.',
+        nodes: [
+          { id:'user', x:70, y:150, label:'User', sub:'query', c:'#7fe3ff' },
+          { id:'plan', x:250, y:150, label:'Planner', sub:'LangGraph', c:'#b6a9ff' },
+          { id:'t1', x:470, y:60, label:'Retrieval', sub:'PGVector', c:'#5ef0b0' },
+          { id:'t2', x:470, y:150, label:'Tools', sub:'APIs', c:'#5ef0b0' },
+          { id:'t3', x:470, y:240, label:'Reasoner', sub:'Claude', c:'#5ef0b0' },
+          { id:'crit', x:690, y:150, label:'Critic', sub:'self-correct', c:'#ffbf6b' },
+          { id:'out', x:880, y:150, label:'Decision', sub:'output', c:'#7fe3ff' },
+        ],
+        edges: [['user','plan'],['plan','t1'],['plan','t2'],['plan','t3'],['t1','crit'],['t2','crit'],['t3','crit'],['crit','out'],['crit','plan']],
+      },
+      rag: {
+        title: 'enterprise-rag.svg',
+        caption: 'Enterprise RAG — documents ingested via Lambda, embedded into OpenSearch; queries retrieve context, Bedrock generates, with human handoff and Salesforce ticketing.',
+        nodes: [
+          { id:'docs', x:70, y:70, label:'Docs', sub:'S3', c:'#5ef0b0' },
+          { id:'ing', x:250, y:70, label:'Ingest', sub:'Lambda', c:'#b6a9ff' },
+          { id:'vec', x:250, y:220, label:'Vector DB', sub:'OpenSearch', c:'#7fe3ff' },
+          { id:'q', x:70, y:220, label:'Query', sub:'user', c:'#7fe3ff' },
+          { id:'ret', x:470, y:150, label:'Retrieve', sub:'top-k', c:'#5ef0b0' },
+          { id:'gen', x:690, y:150, label:'Generate', sub:'Bedrock', c:'#b6a9ff' },
+          { id:'ans', x:880, y:70, label:'Answer', sub:'grounded', c:'#7fe3ff' },
+          { id:'hand', x:880, y:230, label:'Handoff', sub:'Salesforce', c:'#ffbf6b' },
+        ],
+        edges: [['docs','ing'],['ing','vec'],['q','ret'],['vec','ret'],['ret','gen'],['gen','ans'],['gen','hand']],
+      },
+      voice: {
+        title: 'voice2voice.svg',
+        caption: 'Voice2Voice — sub-second streaming pipeline over LiveKit WebRTC. VAD-based barge-in interrupts TTS the moment the user speaks; Redis holds session memory.',
+        nodes: [
+          { id:'mic', x:70, y:150, label:'Speech', sub:'mic', c:'#7fe3ff' },
+          { id:'kit', x:230, y:150, label:'LiveKit', sub:'WebRTC', c:'#b6a9ff' },
+          { id:'stt', x:410, y:150, label:'STT', sub:'Sarvam', c:'#5ef0b0' },
+          { id:'llm', x:590, y:150, label:'LLM', sub:'Claude 4.5', c:'#b6a9ff' },
+          { id:'tts', x:770, y:150, label:'TTS', sub:'Sarvam', c:'#5ef0b0' },
+          { id:'spk', x:920, y:150, label:'Voice', sub:'reply', c:'#7fe3ff' },
+          { id:'mem', x:590, y:250, label:'Memory', sub:'Redis', c:'#ffbf6b' },
+        ],
+        edges: [['mic','kit'],['kit','stt'],['stt','llm'],['llm','tts'],['tts','spk'],['llm','mem'],['mem','llm']],
+      },
+      text2sql: {
+        title: 'text2sql.svg',
+        caption: 'Text2SQL — natural language grounded on schema retrieval, generated to SQL, executed on Athena, with a self-correcting loop that retries on error until valid.',
+        nodes: [
+          { id:'nl', x:70, y:150, label:'NL query', sub:'user', c:'#7fe3ff' },
+          { id:'sch', x:250, y:60, label:'Schema', sub:'PGVector', c:'#5ef0b0' },
+          { id:'gen', x:250, y:230, label:'Generate', sub:'Bedrock', c:'#b6a9ff' },
+          { id:'sql', x:470, y:150, label:'SQL', sub:'validate', c:'#b6a9ff' },
+          { id:'exec', x:690, y:150, label:'Execute', sub:'Athena/Glue', c:'#5ef0b0' },
+          { id:'fix', x:690, y:270, label:'Correct', sub:'retry', c:'#ffbf6b' },
+          { id:'res', x:880, y:150, label:'Result', sub:'80% acc', c:'#7fe3ff' },
+        ],
+        edges: [['nl','sch'],['nl','gen'],['sch','sql'],['gen','sql'],['sql','exec'],['exec','res'],['exec','fix'],['fix','gen']],
+      },
+      docintel: {
+        title: 'document-intelligence.svg',
+        caption: 'Document Intelligence — event-driven on AWS. A multi-threaded SQS listener on ECS fans out to a multi-engine GenAI framework; structured results land in Aurora.',
+        nodes: [
+          { id:'up', x:70, y:150, label:'Upload', sub:'S3', c:'#5ef0b0' },
+          { id:'sqs', x:250, y:150, label:'SQS', sub:'queue', c:'#b6a9ff' },
+          { id:'ecs', x:430, y:150, label:'Listener', sub:'ECS · threads', c:'#7fe3ff' },
+          { id:'cls', x:640, y:70, label:'Classify', sub:'Gemini', c:'#5ef0b0' },
+          { id:'ext', x:640, y:230, label:'Extract', sub:'Gemini', c:'#5ef0b0' },
+          { id:'db', x:880, y:150, label:'Aurora', sub:'structured', c:'#7fe3ff' },
+        ],
+        edges: [['up','sqs'],['sqs','ecs'],['ecs','cls'],['ecs','ext'],['cls','db'],['ext','db']],
+      },
+    };
+  }
+
+  buildDiagram(key) {
+    const React = this.React || window.React;
+    const data = this.archData()[key];
+    const W = 980, H = 320;
+    const byId = {}; data.nodes.forEach(n => byId[n.id] = n);
+    const els = [];
+    // defs
+    els.push(React.createElement('defs', { key:'defs' },
+      React.createElement('marker', { id:'ah', markerWidth:8, markerHeight:8, refX:6, refY:3, orient:'auto' },
+        React.createElement('path', { d:'M0,0 L6,3 L0,6 Z', fill:'rgba(150,170,220,0.6)' }))
+    ));
+    // edges
+    data.edges.forEach((e, i) => {
+      const a = byId[e[0]], b = byId[e[1]];
+      if (!a || !b) return;
+      const mx = (a.x + b.x) / 2;
+      const d = `M ${a.x+46} ${a.y} C ${mx} ${a.y}, ${mx} ${b.y}, ${b.x-46} ${b.y}`;
+      els.push(React.createElement('path', { key:'e'+i, d, fill:'none', stroke:'rgba(140,160,215,0.28)', strokeWidth:1.5, markerEnd:'url(#ah)' }));
+      els.push(React.createElement('path', { key:'ep'+i, d, fill:'none', stroke:a.c, strokeWidth:2, strokeDasharray:'6 190', strokeLinecap:'round', opacity:0.9, style:{ animation:`dash ${2.4 + (i%4)*0.5}s linear infinite`, animationDelay:`${i*0.22}s` } }));
+    });
+    // nodes
+    data.nodes.forEach((n) => {
+      els.push(React.createElement('g', { key:'n'+n.id },
+        React.createElement('rect', { x:n.x-46, y:n.y-26, width:92, height:52, rx:12, fill:'rgba(16,20,34,0.92)', stroke:n.c, strokeWidth:1.4, style:{ filter:`drop-shadow(0 0 10px ${n.c}44)` } }),
+        React.createElement('text', { x:n.x, y:n.y-2, textAnchor:'middle', fill:'#fff', fontSize:13, fontFamily:'Space Grotesk', fontWeight:600 }, n.label),
+        React.createElement('text', { x:n.x, y:n.y+14, textAnchor:'middle', fill:'#8b95af', fontSize:10, fontFamily:'JetBrains Mono' }, n.sub)
+      ));
+    });
+    return React.createElement('svg', { viewBox:`0 0 ${W} ${H}`, width:'100%', style:{ display:'block', maxHeight:'340px' } }, els);
+  }
+
+  archMeta() {
+    const order = [
+      ['agentic','Agentic AI'], ['rag','Enterprise RAG'], ['voice','Voice AI'], ['text2sql','Text2SQL'], ['docintel','Document Intel'],
+    ];
+    const active = this.state.activeArch;
+    return order.map(([key, label]) => ({
+      key, label,
+      onClick: () => this.setState({ activeArch: key }),
+      style: `font-family:'JetBrains Mono'; font-size:13px; cursor:pointer; white-space:nowrap; padding:9px 16px; border-radius:11px; transition:all .3s; ${key===active ? "background:linear-gradient(90deg,#7fe3ff,#b6a9ff); color:#05060b; font-weight:600; border:1px solid transparent;" : "background:rgba(255,255,255,0.04); color:#aab2c8; border:1px solid rgba(255,255,255,0.1);"}`,
+    }));
+  }
+
+  // ---------- three.js particle galaxy ----------
+  componentDidMount() {
+    this.reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.setupReveals();
+    this.setupProgress();
+    this.setupTerminal();
+    this.setupTilt();
+    const showGalaxy = this.props.showGalaxy !== false;
+    if (!this.reduced && showGalaxy) this.setupGalaxy();
+    else this.staticBackdrop();
+  }
+
+  componentWillUnmount() {
+    cancelAnimationFrame(this._raf);
+    window.removeEventListener('resize', this._onResize);
+    window.removeEventListener('mousemove', this._onMove);
+    window.removeEventListener('scroll', this._onScroll);
+    if (this._io) this._io.disconnect();
+    if (this._renderer) { this._renderer.dispose && this._renderer.dispose(); }
+  }
+
+  setupReveals() {
+    const root = this.refs && this.refs.root;
+    if (!root) return;
+    const els = root.querySelectorAll('[data-reveal]');
+    els.forEach(el => {
+      if (this.reduced) return;
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(34px)';
+      el.style.transition = 'opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1)';
+      el.style.willChange = 'opacity, transform';
+    });
+    if (this.reduced) return;
+    this._io = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        if (en.isIntersecting) {
+          const el = en.target;
+          const sib = Array.from(el.parentElement ? el.parentElement.children : []).indexOf(el);
+          el.style.transitionDelay = Math.min(sib, 6) * 70 + 'ms';
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+          this._io.unobserve(el);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(el => this._io.observe(el));
+  }
+
+  setupTilt() {
+    if (this.reduced) return;
+    const root = this.refs && this.refs.root;
+    if (!root) return;
+    const cards = root.querySelectorAll('[data-tilt]');
+    cards.forEach(card => {
+      card.style.transformStyle = 'preserve-3d';
+      card.style.willChange = 'transform';
+      const onMove = (e) => {
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        const rx = (-py * 7).toFixed(2);
+        const ry = (px * 9).toFixed(2);
+        card.style.transition = 'transform .08s ease-out';
+        card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(14px) scale(1.02)`;
+        card.style.borderColor = 'rgba(127,227,255,0.45)';
+        card.style.boxShadow = `${(-ry*1.4).toFixed(1)}px ${(Math.abs(rx)+16).toFixed(1)}px 46px rgba(0,0,0,0.5), 0 0 40px rgba(127,227,255,0.08)`;
+        const glare = card.querySelector('[data-glare]');
+        if (glare) { glare.style.opacity = '1'; glare.style.background = `radial-gradient(420px circle at ${((px+0.5)*100).toFixed(0)}% ${((py+0.5)*100).toFixed(0)}%, rgba(127,227,255,0.22), transparent 55%)`; }
+        const lift = card.querySelector('[data-lift]');
+        if (lift) lift.style.transform = `translateZ(40px) translate(${(px*10).toFixed(1)}px, ${(py*8).toFixed(1)}px)`;
+      };
+      const onLeave = () => {
+        card.style.transition = 'transform .6s cubic-bezier(.2,.8,.2,1), box-shadow .6s, border-color .6s';
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0) scale(1)';
+        card.style.borderColor = '';
+        card.style.boxShadow = '';
+        const glare = card.querySelector('[data-glare]');
+        if (glare) glare.style.opacity = '0';
+        const lift = card.querySelector('[data-lift]');
+        if (lift) lift.style.transform = '';
+      };
+      card.addEventListener('mousemove', onMove);
+      card.addEventListener('mouseleave', onLeave);
+    });
+  }
+
+  setupProgress() {
+    const bar = this.refs && this.refs.progress;
+    if (!bar) return;
+    this._onScroll = () => {
+      const h = document.documentElement;
+      const p = h.scrollTop / (h.scrollHeight - h.clientHeight || 1);
+      bar.style.width = Math.max(0, Math.min(1, p)) * 100 + '%';
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._onScroll();
+  }
+
+  setupTerminal() {
+    const term = this.refs && this.refs.term;
+    const wrap = this.refs && this.refs.termWrap;
+    if (!term) return;
+    const lines = [
+      { t: '$ whoami', c: '#5ef0b0' },
+      { t: 'ravi_teja_pasupuleti — Senior AI Engineer', c: '#c6cde0' },
+      { t: '$ cat focus.txt', c: '#5ef0b0' },
+      { t: 'agentic_ai · llms · voice · rag · aws · mlops', c: '#7fe3ff' },
+      { t: '$ ./status --projects', c: '#5ef0b0' },
+      { t: 'SeekAlfred ........ LIVE  → seekalfred.ai', c: '#b6a9ff' },
+      { t: 'enterprise systems ....... 8+ in production', c: '#c6cde0' },
+      { t: '$ ./contact --open', c: '#5ef0b0' },
+      { t: 'ready. reach out any time ▋', c: '#5ef0b0' },
+    ];
+    const run = () => {
+      if (this._termStarted) return;
+      this._termStarted = true;
+      let li = 0;
+      const next = () => {
+        if (li >= lines.length) return;
+        const ln = lines[li];
+        const div = document.createElement('div');
+        div.style.color = ln.c;
+        div.style.whiteSpace = 'pre-wrap';
+        term.appendChild(div);
+        let ci = 0;
+        const type = () => {
+          div.textContent = ln.t.slice(0, ci);
+          ci++;
+          if (ci <= ln.t.length) { setTimeout(type, this.reduced ? 0 : 16); }
+          else { li++; setTimeout(next, this.reduced ? 0 : 240); }
+        };
+        type();
+      };
+      next();
+    };
+    if (this.reduced) { run(); return; }
+    const io = new IntersectionObserver((e) => { e.forEach(en => { if (en.isIntersecting) { run(); io.disconnect(); } }); }, { threshold: 0.3 });
+    io.observe(wrap || term);
+  }
+
+  staticBackdrop() {
+    const c = this.refs && this.refs.galaxy;
+    if (c) c.style.display = 'none';
+  }
+
+  async setupGalaxy() {
+    const canvas = this.refs && this.refs.galaxy;
+    if (!canvas) return;
+    let THREE;
+    try {
+      THREE = await import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js');
+    } catch (e) { this.staticBackdrop(); return; }
+    this._THREE = THREE;
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    this._renderer = renderer;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(62, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(0, 0.6, 7);
+
+    // ---- spiral galaxy of particles ----
+    const dens = this.props.galaxyDensity != null ? this.props.galaxyDensity : 1;
+    const COUNT = Math.round((window.innerWidth < 768 ? 8000 : 20000) * dens);
+    const positions = new Float32Array(COUNT * 3);
+    const colors = new Float32Array(COUNT * 3);
+    const cInner = new THREE.Color('#7fe3ff');
+    const cOuter = new THREE.Color('#9b8cff');
+    const cCore = new THREE.Color('#ffffff');
+    const ARMS = 4, RADIUS = 9;
+    for (let i = 0; i < COUNT; i++) {
+      const r = Math.pow(Math.random(), 0.65) * RADIUS;
+      const arm = (i % ARMS) / ARMS * Math.PI * 2;
+      const spin = r * 0.55;
+      const spread = (Math.random() - 0.5) * (0.35 + r * 0.12);
+      const ang = arm + spin;
+      positions[i*3]   = Math.cos(ang) * r + spread;
+      positions[i*3+1] = (Math.random() - 0.5) * (0.5 - r*0.03) + spread * 0.4;
+      positions[i*3+2] = Math.sin(ang) * r + spread;
+      const t = r / RADIUS;
+      const col = t < 0.12 ? cCore.clone().lerp(cInner, t/0.12) : cInner.clone().lerp(cOuter, (t-0.12)/0.88);
+      colors[i*3] = col.r; colors[i*3+1] = col.g; colors[i*3+2] = col.b;
+    }
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+    // soft round sprite
+    const cvs = document.createElement('canvas'); cvs.width = cvs.height = 64;
+    const g = cvs.getContext('2d');
+    const grad = g.createRadialGradient(32,32,0,32,32,32);
+    grad.addColorStop(0,'rgba(255,255,255,1)'); grad.addColorStop(0.4,'rgba(255,255,255,0.5)'); grad.addColorStop(1,'rgba(255,255,255,0)');
+    g.fillStyle = grad; g.fillRect(0,0,64,64);
+    const tex = new THREE.CanvasTexture(cvs);
+
+    const mat = new THREE.PointsMaterial({ size: 0.055, map: tex, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, vertexColors: true, opacity: 0.95 });
+    const points = new THREE.Points(geo, mat);
+    points.rotation.x = 0.42;
+    scene.add(points);
+
+    // distant starfield
+    const sCount = 1400;
+    const sPos = new Float32Array(sCount * 3);
+    for (let i = 0; i < sCount; i++) {
+      sPos[i*3] = (Math.random()-0.5)*60; sPos[i*3+1] = (Math.random()-0.5)*40; sPos[i*3+2] = (Math.random()-0.5)*60 - 10;
+    }
+    const sGeo = new THREE.BufferGeometry();
+    sGeo.setAttribute('position', new THREE.BufferAttribute(sPos, 3));
+    const stars = new THREE.Points(sGeo, new THREE.PointsMaterial({ size: 0.03, color: '#aab6e0', transparent: true, opacity: 0.5, map: tex, depthWrite: false, blending: THREE.AdditiveBlending }));
+    scene.add(stars);
+
+    let mx = 0, my = 0, tmx = 0, tmy = 0, scrollY = 0;
+    this._onMove = (e) => { tmx = (e.clientX / window.innerWidth - 0.5); tmy = (e.clientY / window.innerHeight - 0.5); };
+    window.addEventListener('mousemove', this._onMove, { passive: true });
+
+    this._onResize = () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    };
+    window.addEventListener('resize', this._onResize);
+
+    const clock = new THREE.Clock();
+    const animate = () => {
+      this._raf = requestAnimationFrame(animate);
+      const dt = clock.getDelta();
+      const el = clock.elapsedTime;
+      points.rotation.y += dt * 0.045;
+      stars.rotation.y += dt * 0.01;
+      mx += (tmx - mx) * 0.04; my += (tmy - my) * 0.04;
+      const sc = window.scrollY || window.pageYOffset || 0;
+      camera.position.x += (mx * 1.4 - camera.position.x) * 0.05;
+      camera.position.y += ((-my * 0.9 + 0.6) - camera.position.y) * 0.05;
+      points.rotation.x = 0.42 + Math.sin(el * 0.15) * 0.04 + sc * 0.00012;
+      camera.position.z = 7 + Math.sin(el * 0.2) * 0.3;
+      camera.lookAt(0, 0, 0);
+      renderer.render(scene, camera);
+    };
+    animate();
+  }
+
+  renderVals() {
+    const t = this.tokens;
+    const skills = [
+      { name:'Agentic AI', cat:'Multi-agent · LangGraph' },
+      { name:'LLMs', cat:'Claude · GPT · Gemini' },
+      { name:'RAG', cat:'PGVector · OpenSearch' },
+      { name:'Voice AI', cat:'LiveKit · STT/TTS' },
+      { name:'Python', cat:'Advanced' },
+      { name:'FastAPI', cat:'APIs · Microservices' },
+      { name:'AWS', cat:'ECS · Lambda · Bedrock' },
+      { name:'SageMaker', cat:'Training · MLOps' },
+      { name:'Docker', cat:'Containers' },
+      { name:'Kubernetes', cat:'EKS · autoscaling' },
+      { name:'PostgreSQL', cat:'Relational · vector' },
+      { name:'Deep Learning', cat:'LSTM · TFT · BERT' },
+      { name:'Bedrock', cat:'Titan · Claude' },
+      { name:'MCP', cat:'Model Context Protocol' },
+      { name:'PySpark', cat:'ETL · big data' },
+      { name:'Forecasting', cat:'LightGBM · XGBoost' },
+    ];
+    const stack = ['Python','FastAPI','Flask','LangGraph','LangChain','OpenAI Agents','Claude','Amazon Bedrock','Gemini','AWS ECS','AWS Lambda','SageMaker','EC2','S3','Glue','Athena','Step Functions','Neptune','DynamoDB','Aurora','PostgreSQL','PGVector','OpenSearch','Pinecone','Chroma','Redis','Docker','Kubernetes','LiveKit','Whisper','NVIDIA NeMo','PySpark','Dagster','Power BI','Plotly Dash'];
+
+    const active = this.state.activeArch;
+    const meta = this.archData()[active];
+
+    return {
+      ...t,
+      ...this.hovers,
+      skills, stack,
+      archTabs: this.archMeta(),
+      archDiagram: this.buildDiagram(active),
+      archTitle: meta.title,
+      archCaption: meta.caption,
+    };
+  }
+}
+</script>
+</body>
+</html>

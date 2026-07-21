@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ravi Teja Pasupuleti — Senior AI Engineer</title>
+<meta name="description" content="Ravi Teja Pasupuleti — Senior AI Engineer building agentic, production-grade AI systems: multi-agent orchestration, LLMs & RAG, sub-second Voice AI, Text2SQL and serverless AWS MLOps.">
+<meta name="author" content="Ravi Teja Pasupuleti">
+<link rel="canonical" href="https://ravi-dsarchitect.github.io/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ravi Teja Pasupuleti — Senior AI Engineer">
+<meta property="og:description" content="Engineering AI that thinks, decides & ships. Agentic systems, LLMs & RAG, Voice AI, and serverless AWS MLOps in production.">
+<meta property="og:url" content="https://ravi-dsarchitect.github.io/">
+<meta property="og:image" content="https://ravi-dsarchitect.github.io/assets/ravi.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  body { background: #ffffff; color: #0a0a0a; font-family: 'Inter', system-ui, sans-serif; font-feature-settings: 'kern' 1; overflow-x: hidden; }
+  ::selection { background: #d8f16a; color: #0a0a0a; }
+  a { color: #0a0a0a; text-decoration: none; }
+  a:hover { color: #0a0a0a; }
+  ::-webkit-scrollbar { width: 11px; }
+  ::-webkit-scrollbar-track { background: #f4f3f0; }
+  ::-webkit-scrollbar-thumb { background: #cfccc4; border-radius: 8px; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes dash { to { stroke-dashoffset: -200; } }
+
+  /* hover behaviors (ported from style-hover bindings) */
+  .navlink { font-weight:450; font-size:15px; letter-spacing:-0.1px; color:#0a0a0a; padding:8px 12px; border-radius:9999px; transition:background .2s; }
+  .navlink:hover { background:#f4f3f0; }
+  .pill-primary { display:inline-flex; align-items:center; gap:8px; font-weight:480; font-size:15px; letter-spacing:-0.1px; background:#0a0a0a; color:#fff; padding:11px 22px; border-radius:50px; border:none; cursor:pointer; transition:transform .18s ease; }
+  .pill-primary:hover { transform:scale(1.04); color:#fff; }
+  .pill-secondary { display:inline-flex; align-items:center; gap:8px; font-weight:480; font-size:15px; letter-spacing:-0.1px; background:#fff; color:#0a0a0a; padding:11px 22px; border-radius:50px; border:1px solid #e0ddd6; cursor:pointer; transition:transform .18s ease, background .18s; }
+  .pill-secondary:hover { transform:scale(1.04); background:#f4f3f0; }
+  .pill-ondark { display:inline-flex; align-items:center; gap:8px; font-weight:480; font-size:15px; letter-spacing:-0.1px; background:#fff; color:#17143a; padding:12px 24px; border-radius:50px; border:none; cursor:pointer; transition:transform .18s ease; }
+  .pill-ondark:hover { transform:scale(1.04); color:#17143a; }
+  .skill-card { background:#fff; border:1px solid rgba(76,58,122,0.12); border-radius:12px; padding:16px 18px; transition:transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s; }
+  .skill-card:hover { transform:translateY(-3px); box-shadow:0 8px 22px rgba(76,58,122,0.14); }
+  .arch-tab { font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:0.3px; cursor:pointer; white-space:nowrap; padding:9px 16px; border-radius:50px; transition:all .25s; background:#ffffff; color:#0a0a0a; border:1px solid rgba(10,10,10,0.18); }
+  .arch-tab.active { background:#0a0a0a; color:#fff; border:1px solid #0a0a0a; font-weight:500; }
+  .foot-link { font-weight:340; font-size:15.5px; letter-spacing:-0.1px; color:#3a3a3a; }
+  .foot-link:hover { color:#0a0a0a; }
+
+  @media (max-width: 900px) {
+    .navlinks { display: none !important; }
+    .grid4 { grid-template-columns: repeat(2,1fr) !important; }
+    .grid3 { grid-template-columns: 1fr !important; }
+    .grid2 { grid-template-columns: 1fr !important; }
+    .about-grid { grid-template-columns: 1fr !important; }
+  }
+  @media (max-width: 768px) {
+    .block { border-radius: 0 !important; margin-left: -24px !important; margin-right: -24px !important; padding-left: 24px !important; padding-right: 24px !important; }
+  }
+  @media (max-width: 560px) {
+    .grid4 { grid-template-columns: 1fr !important; }
+    .navcta-sec { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div id="root" style="position: relative; width: 100%; overflow: hidden;">
+
+  <!-- scroll progress -->
+  <div style="position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 90; background: transparent;">
+    <div id="progress" style="height: 100%; width: 0%; background: #0a0a0a;"></div>
+  </div>
+
+  <!-- ===== TOP NAV ===== -->
+  <nav style="position: sticky; top: 0; z-index: 80; height: 60px; display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.86); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid #ece9e3; padding: 0 clamp(20px,4vw,48px);">
+    <a href="#top" style="display: flex; align-items: center; gap: 10px;">
+      <span style="width: 26px; height: 26px; border-radius: 999px; background: #0a0a0a; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 14px;">R</span>
+      <span style="font-weight: 600; font-size: 17px; letter-spacing: -0.3px;">Ravi Teja</span>
+    </a>
+    <div class="navlinks" style="display: flex; gap: 4px; position: absolute; left: 50%; transform: translateX(-50%);">
+      <a href="#work" class="navlink">Work</a>
+      <a href="#systems" class="navlink">Systems</a>
+      <a href="#journey" class="navlink">Journey</a>
+      <a href="#skills" class="navlink">Skills</a>
+      <a href="#about" class="navlink">About</a>
+    </div>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <a class="navcta-sec pill-secondary" href="https://www.linkedin.com/in/teja01/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="pill-primary" href="#contact">Get in touch</a>
+    </div>
+  </nav>
+
+  <!-- ===== MARQUEE STRIP ===== -->
+  <div style="background: #0a0a0a; color: #fff; height: 40px; display: flex; align-items: center; overflow: hidden; white-space: nowrap;">
+    <div id="marquee" style="display: inline-flex; gap: 42px; padding-right: 42px; animation: marquee 34s linear infinite; will-change: transform;"></div>
+  </div>
+
+  <div id="top"></div>
+
+  <!-- ===== HERO (white) ===== -->
+  <section style="max-width:1280px; margin:0 auto; padding-left:clamp(20px,4vw,48px); padding-right:clamp(20px,4vw,48px); padding-top: clamp(64px,9vw,120px); padding-bottom: clamp(48px,7vw,96px);">
+    <div style="display: grid; grid-template-columns: 1.08fr 0.92fr; gap: clamp(28px,5vw,56px); align-items: center;" class="about-grid">
+      <div>
+        <div data-reveal style="font-family:'JetBrains Mono',monospace; font-weight:500; font-size:13px; line-height:1.3; letter-spacing:1.5px; text-transform:uppercase; color: #0a0a0a;">Senior AI Engineer — Agentic Systems</div>
+        <h1 data-reveal style="font-weight:340; font-size:clamp(46px,8vw,86px); line-height:1.0; letter-spacing:-0.035em; max-width: 14ch; margin-top: 22px;">Engineering AI that thinks, decides &amp; ships.</h1>
+        <p data-reveal style="font-weight:330; font-size:clamp(18px,2vw,20px); line-height:1.45; letter-spacing:-0.14px; max-width: 52ch; margin-top: 28px; color: #2a2a2a;">I'm <strong style="font-weight: 540;">Ravi Teja Pasupuleti</strong> — I build agentic AI systems that turn large language models into production-grade decision engines. Not demos. Systems that run.</p>
+        <div data-reveal style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px;">
+          <a href="#work" class="pill-primary">See the work</a>
+          <a href="#contact" class="pill-secondary">Get in touch</a>
+        </div>
+      </div>
+      <div data-reveal style="position: relative; aspect-ratio: 1 / 1; min-height: 320px;">
+        <canvas id="heroCanvas" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block;"></canvas>
+      </div>
+    </div>
+    <div data-reveal style="display: flex; flex-wrap: wrap; gap: clamp(24px,5vw,64px); margin-top: clamp(48px,7vw,80px); border-top: 1px solid #ece9e3; padding-top: 36px;">
+      <div><div style="font-weight:340; font-size: clamp(32px,4vw,48px); line-height:1.08; letter-spacing:-0.02em;">5+</div><div style="font-family:'JetBrains Mono',monospace; font-weight:400; font-size:12px; line-height:1.3; letter-spacing:0.8px; text-transform:uppercase; color: #6b6b6b; margin-top: 6px;">Years in production</div></div>
+      <div><div style="font-weight:340; font-size: clamp(32px,4vw,48px); line-height:1.08; letter-spacing:-0.02em;">15+</div><div style="font-family:'JetBrains Mono',monospace; font-weight:400; font-size:12px; line-height:1.3; letter-spacing:0.8px; text-transform:uppercase; color: #6b6b6b; margin-top: 6px;">Systems shipped</div></div>
+      <div><div style="font-weight:340; font-size: clamp(32px,4vw,48px); line-height:1.08; letter-spacing:-0.02em;">3</div><div style="font-family:'JetBrains Mono',monospace; font-weight:400; font-size:12px; line-height:1.3; letter-spacing:0.8px; text-transform:uppercase; color: #6b6b6b; margin-top: 6px;">Companies · TCS · GlobalData · Ngenux</div></div>
+      <div><div style="font-weight:340; font-size: clamp(32px,4vw,48px); line-height:1.08; letter-spacing:-0.02em;">500+</div><div style="font-family:'JetBrains Mono',monospace; font-weight:400; font-size:12px; line-height:1.3; letter-spacing:0.8px; text-transform:uppercase; color: #6b6b6b; margin-top: 6px;">Problems solved · LeetCode + StrataScratch</div></div>
+    </div>
+  </section>
+
+  <!-- ===== EXPERTISE — LIME BLOCK ===== -->
+  <section id="systems" style="max-width:1280px; margin:clamp(56px,8vw,96px) auto 0; padding-left:clamp(20px,4vw,48px); padding-right:clamp(20px,4vw,48px);">
+    <div data-reveal class="block" style="border-radius:24px; padding:clamp(28px,5vw,72px); background: #d8f16a;">
+      <div style="font-family:'JetBrains Mono',monospace; font-weight:500; font-size:13px; line-height:1.3; letter-spacing:1.5px; text-transform:uppercase; color: #3d4a12;">What I go deep on</div>
+      <h2 style="font-weight:340; font-size:clamp(34px,5.2vw,64px); line-height:1.08; letter-spacing:-0.02em; margin-top: 16px; max-width: 18ch;">The systems I build.</h2>
+      <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; margin-top: 44px; background: rgba(10,10,10,0.12); border: 1px solid rgba(10,10,10,0.12); border-radius: 12px; overflow: hidden;" class="grid3">
+        <div style="background:#d8f16a; padding:clamp(20px,3vw,28px);"><div style="font-weight:560; font-size:clamp(20px,2.4vw,26px); line-height:1.3; letter-spacing:-0.4px;">Agentic AI</div><p style="font-weight:340; font-size:15.5px; line-height:1.5; letter-spacing:-0.1px; margin-top: 10px; color: #33400f;">Multi-agent orchestration, tool-calling, planning &amp; self-correction with LangGraph and OpenAI Agents.</p></div>
+        <div style="background:#d8f16a; padding:clamp(20px,3vw,28px);"><div style="font-weight:560; font-size:clamp(20px,2.4vw,26px); line-height:1.3; letter-spacing:-0.4px;">LLMs &amp; RAG</div><p style="font-weight:340; font-size:15.5px; line-height:1.5; letter-spacing:-0.1px; margin-top: 10px; color: #33400f;">Retrieval over PGVector, OpenSearch, Chroma &amp; Pinecone. Bedrock, Claude, OpenAI &amp; Gemini in production.</p></div>
+        <div style="background:#d8f16a; padding:clamp(20px,3vw,28px);"><div style="font-weight:560; font-size:clamp(20px,2.4vw,26px); line-height:1.3; letter-spacing:-0.4px;">Voice AI</div><p style="font-weight:340; font-size:15.5px; line-height:1.5; letter-spacing:-0.1px; margin-top: 10px; color: #33400f;">Sub-second streaming STT → LLM → TTS pipelines over LiveKit WebRTC with barge-in handling.</p></div>
+        <div style="background:#d8f16a; padding:clamp(20px,3vw,28px);"><div style="font-weight:560; font-size:clamp(20px,2.4vw,26px); line-height:1.3; letter-spacing:-0.4px;">Enterprise Data</div><p style="font-weight:340; font-size:15.5px; line-height:1.5; letter-spacing:-0.1px; margin-top: 10px; color: #33400f;">Text2SQL, document intelligence &amp; NL querying across Postgres, Mongo &amp; DynamoDB via MCP.</p></div>
+        <div style="background:#d8f16a; padding:clamp(20px,3vw,28px);"><div style="font-weight:560; font-size:clamp(20px,2.4vw,26px); line-height:1.3; letter-spacing:-0.4px;">AWS &amp; MLOps</div><p style="font-weight:340; font-size:15.5px; line-height:1.5; letter-spacing:-0.1px; margin-top: 10px; color: #33400f;">ECS, Lambda, SageMaker, Bedrock, Glue, Athena &amp; Step Functions — serverless and event-driven.</p></div>
+        <div style="background:#d8f16a; padding:clamp(20px,3vw,28px);"><div style="font-weight:560; font-size:clamp(20px,2.4vw,26px); line-height:1.3; letter-spacing:-0.4px;">ML &amp; Forecasting</div><p style="font-weight:340; font-size:15.5px; line-height:1.5; letter-spacing:-0.1px; margin-top: 10px; color: #33400f;">Deep learning, time-series (LSTM / TFT), gradient boosting &amp; classical modeling at scale.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FLAGSHIP — NAVY BLOCK ===== -->
+  <section style="max-width:1280px; margin:clamp(56px,8vw,96px) auto 0; padding-left:clamp(20px,4vw,48px); padding-right:clamp(20px,4vw,48px);">
+    <div data-reveal class="block" style="border-radius:24px; padding:clamp(28px,5vw,72px); background: #17143a; color: #fff; position: relative; overflow: hidden;">
+      <canvas id="navyCanvas" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;"></canvas>
+      <div style="font-family:'JetBrains Mono',monospace; font-weight:500; font-size:13px; line-height:1.3; letter-spacing:1.5px; text-transform:uppercase; color: #b9aeff; position: relative; z-index: 1;">Flagship — Live</div>
+      <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(24px,5vw,56px); margin-top: 18px; align-items: end; position: relative; z-index: 1;" class="about-grid">
+        <div>
+          <h2 style="font-weight:340; font-size:clamp(34px,5.2vw,64px); line-height:1.08; letter-spacing:-0.02em; color: #fff; max-width: 16ch;">SeekAlfred — the AI Chief of Staff for the C-suite.</h2>
+          <p style="font-weight:340; font-size:clamp(19px,2.4vw,26px); line-height:1.38; letter-spacing:-0.3px; color: #d3cdf2; margin-top: 22px; max-width: 46ch;">Unifies fragmented signals across the marketing &amp; revenue stack — Google Ads, Meta, LinkedIn Ads, HubSpot — into decision-ready recommendations.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px;">
+            <a href="https://seekalfred.ai/" target="_blank" rel="noopener" class="pill-ondark">Visit seekalfred.ai →</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-weight:400; font-size:12px; line-height:1.3; letter-spacing:0.8px; text-transform:uppercase; color: #9a90d6; margin-bottom: 14px;">Modules I built</div>
+          <div style="display: grid; gap: 10px;">
+            <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:10px; padding:14px 16px; font-weight:480; font-size:16px; letter-spacing:-0.2px; color:#fff;">Spend-Mix Optimization</div>
+            <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:10px; padding:14px 16px; font-weight:480; font-size:16px; letter-spacing:-0.2px; color:#fff;">Creative Fatigue Detection</div>
+            <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:10px; padding:14px 16px; font-weight:480; font-size:16px; letter-spacing:-0.2px; color:#fff;">AI Visibility Score</div>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#d3cdf2; padding:5px 10px; border-radius:6px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.16);">LangGraph</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#d3cdf2; padding:5px 10px; border-radius:6px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.16);">PGVector</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#d3cdf2; padding:5px 10px; border-radius:6px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.16);">FastAPI</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#d3cdf2; padding:5px 10px; border-radius:6px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.16);">AWS ECS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ARCHITECTURE — CORAL BLOCK ===== -->
+  <section id="architecture" style="max-width:1280px; margin:clamp(56px,8vw,96px) auto 0; padding-left:clamp(20px,4vw,48px); padding-right:clamp(20px,4vw,48px);">
+    <div data-reveal class="block" style="border-radius:24px; padding:clamp(28px,5vw,72px); background: #ff8f70;">
+      <div style="font-family:'JetBrains Mono',monospace; font-weight:500; font-size:13px; line-height:1.3; letter-spacing:1.5px; text-transform:uppercase; color: #6d2d18;">Architecture showcase</div>
+      <h2 style="font-weight:340; font-size:clamp(34px,5.2vw,64px); line-height:1.08; letter-spacing:-0.02em; margin-top: 16px; max-width: 16ch;">How the systems are wired.</h2>
+      <p style="font-weight:330; font-size:18px; line-height:1.5; letter-spacing:-0.2px; color: #5a2517; margin-top: 16px; max-width: 54ch;">Interactive reference architectures — pulses flow along live data paths. Pick a system.</p>
+      <div id="archTabs" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px;"></div>
+      <div style="margin-top: 18px; background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08);">
+        <div style="padding: 14px 18px 4px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #eeece7;">
+          <span style="width:9px;height:9px;border-radius:50%;background:#ff5f57;"></span>
+          <span style="width:9px;height:9px;border-radius:50%;background:#febc2e;"></span>
+          <span style="width:9px;height:9px;border-radius:50%;background:#28c840;"></span>
+          <span id="archTitle" style="font-family:'JetBrains Mono',monospace; font-weight:400; font-size:12px; line-height:1.3; letter-spacing:0.8px; text-transform:uppercase; color: #8a8a8a; margin-left: 6px;"></span>
+        </div>
+        <div id="archDiagram" style="width: 100%;"></div>
+        <div id="archCaption" style="padding: 6px 20px 18px; font-weight:340; font-size:15.5px; line-height:1.5; letter-spacing:-0.1px; color: #3a3a3a;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURED PROJECTS — WHITE GRID ===== -->
+  <section id="work" style="max-width:1280px; margin:0 auto; padding-left:clamp(20px,4vw,48px); padding-right:clamp(20px,4vw,48px); padding-top: clamp(56px,8vw,96px); padding-bottom: clamp(40px,6vw,80px);">
+    <div data-reveal style="font-family:'JetBrains Mono',monospace; font-weight:500; font-size:13px; line-height:1.3; letter-spacing:1.5px; text-transform:uppercase; color: #6b6b6b;">Featured work — every system in production</div>
+    <h2 data-reveal style="font-weight:340; font-size:clamp(34px,5.2vw,64px); line-height:1.08; letter-spacing:-0.02em; margin-top: 16px; max-width: 16ch;">Things I've shipped.</h2>
+
+    <!-- Ngenux -->
+    <div data-reveal style="display:flex; align-items:baseline; gap:16px; margin:clamp(40px,6vw,64px) 0 18px; flex-wrap:wrap;"><h3 style="font-weight:600; font-size:20px; letter-spacing:-0.4px;">Ngenux Solutions</h3><span style="flex:1; min-width:30px; height:1px; background:#e6e4df;"></span><span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.6px; text-transform:uppercase; color:#8a8a8a; white-space:nowrap;">Senior AI Engineer · 2025 — Now</span></div>
+    <div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 16px;" class="grid2">
+      <div data-reveal data-tilt style="background:#f4f3f0; border:1px solid #eae7e0; border-radius:16px; padding:clamp(20px,3vw,28px); transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s;">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:14px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#6b6b6b;">Voice AI</span><span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.5px; text-transform:uppercase; color:#8a8a8a; padding:4px 9px; border-radius:50px; border:1px solid #e0ddd6;">Private</span></div>
+        <h4 style="font-weight:700; font-size:22px; line-height:1.25; letter-spacing:-0.3px;">Voice2Voice AI Agent</h4>
+        <p style="font-weight:340; font-size:15px; line-height:1.5; letter-spacing:-0.1px; color:#3a3a3a; margin:10px 0 16px;">A real-time voice agent you can talk over. Sub-second STT → LLM → TTS on LiveKit WebRTC, with VAD barge-in that stops the instant you interrupt.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:7px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">Claude Sonnet 4.5</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">Sarvam AI</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">LiveKit</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">Redis</span></div>
+      </div>
+      <div data-reveal data-tilt style="background:#f4f3f0; border:1px solid #eae7e0; border-radius:16px; padding:clamp(20px,3vw,28px); transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s;">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:14px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#6b6b6b;">Agentic RAG</span><span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.5px; text-transform:uppercase; color:#8a8a8a; padding:4px 9px; border-radius:50px; border:1px solid #e0ddd6;">Private</span></div>
+        <h4 style="font-weight:700; font-size:22px; line-height:1.25; letter-spacing:-0.3px;">Enterprise RAG Platform</h4>
+        <p style="font-weight:340; font-size:15px; line-height:1.5; letter-spacing:-0.1px; color:#3a3a3a; margin:10px 0 16px;">An EdTech support agent that answers from company docs, hands off to a human in real time, and files the Salesforce ticket itself. Bedrock grounded on OpenSearch.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:7px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">LangGraph</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">Bedrock</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">OpenSearch</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">Lambda</span></div>
+      </div>
+      <div data-reveal data-tilt style="background:#f4f3f0; border:1px solid #eae7e0; border-radius:16px; padding:clamp(20px,3vw,28px); transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s;">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:14px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#6b6b6b;">Enterprise Data</span><span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.4px; color:#1f7a4d; padding:4px 9px; border-radius:50px; border:1px solid #bfe6cf; background:#e7f6ec;">◆ 80% accuracy</span></div>
+        <h4 style="font-weight:700; font-size:22px; line-height:1.25; letter-spacing:-0.3px;">Enterprise Text2SQL</h4>
+        <p style="font-weight:340; font-size:15px; line-height:1.5; letter-spacing:-0.1px; color:#3a3a3a; margin:10px 0 16px;">Ask questions in plain English, get the SQL and the answer. A self-correcting loop retries failed queries until they run — BI in everyone's hands.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:7px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">Bedrock</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">Athena · Glue</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">Neptune</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">PGVector</span></div>
+      </div>
+      <div data-reveal data-tilt style="background:#f4f3f0; border:1px solid #eae7e0; border-radius:16px; padding:clamp(20px,3vw,28px); transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s;">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:14px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#6b6b6b;">Document AI</span><span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.5px; text-transform:uppercase; color:#8a8a8a; padding:4px 9px; border-radius:50px; border:1px solid #e0ddd6;">Private</span></div>
+        <h4 style="font-weight:700; font-size:22px; line-height:1.25; letter-spacing:-0.3px;">Document Intelligence</h4>
+        <p style="font-weight:340; font-size:15px; line-height:1.5; letter-spacing:-0.1px; color:#3a3a3a; margin:10px 0 16px;">Drop a document in S3 and it's automatically classified and its data extracted — no queue backups. A multi-threaded SQS listener on ECS fans work into a multi-engine GenAI framework.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:7px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">Gemini</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">SQS · ECS</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">Aurora</span></div>
+      </div>
+      <div data-reveal data-tilt style="background:#f4f3f0; border:1px solid #eae7e0; border-radius:16px; padding:clamp(20px,3vw,28px); transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s;">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:14px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#6b6b6b;">Agentic Search</span><span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.5px; text-transform:uppercase; color:#8a8a8a; padding:4px 9px; border-radius:50px; border:1px solid #e0ddd6;">Private</span></div>
+        <h4 style="font-weight:700; font-size:22px; line-height:1.25; letter-spacing:-0.3px;">Ngen Studio · AI Studio</h4>
+        <p style="font-weight:340; font-size:15px; line-height:1.5; letter-spacing:-0.1px; color:#3a3a3a; margin:10px 0 16px;">Enterprise search across everything a company already uses. OpenAI Agents route across Drive, S3 &amp; OneDrive, and let you query Postgres, Mongo &amp; DynamoDB in natural language via MCP.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:7px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">OpenAI Agents</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">MCP</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">FastAPI</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">EC2</span></div>
+      </div>
+      <div data-reveal data-tilt style="background:#f4f3f0; border:1px solid #eae7e0; border-radius:16px; padding:clamp(20px,3vw,28px); transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s;">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:14px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#6b6b6b;">Voice Analytics</span><span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.5px; text-transform:uppercase; color:#8a8a8a; padding:4px 9px; border-radius:50px; border:1px solid #e0ddd6;">Case study</span></div>
+        <h4 style="font-weight:700; font-size:22px; line-height:1.25; letter-spacing:-0.3px;">Sales Call Analytics</h4>
+        <p style="font-weight:340; font-size:15px; line-height:1.5; letter-spacing:-0.1px; color:#3a3a3a; margin:10px 0 16px;">Turns raw e-commerce sales calls into coaching insight. Whisper + NVIDIA NeMo separate who said what, Bedrock extracts the signals, surfaced in a live Plotly Dash dashboard.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:7px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">Whisper</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">NVIDIA NeMo</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">Bedrock</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">Plotly Dash</span></div>
+      </div>
+      <div data-reveal data-tilt style="background:#f4f3f0; border:1px solid #eae7e0; border-radius:16px; padding:clamp(20px,3vw,28px); transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s;">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:14px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#6b6b6b;">ML System</span><span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.4px; color:#1f7a4d; padding:4px 9px; border-radius:50px; border:1px solid #bfe6cf; background:#e7f6ec;">◆ −35% churn</span></div>
+        <h4 style="font-weight:700; font-size:22px; line-height:1.25; letter-spacing:-0.3px;">Student Churn Prediction</h4>
+        <p style="font-weight:340; font-size:15px; line-height:1.5; letter-spacing:-0.1px; color:#3a3a3a; margin:10px 0 16px;">Flags students likely to drop off before they do, so an EdTech client can step in early. SageMaker trains and scores 5K+ records on a weekly schedule.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:7px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">SageMaker</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">S3</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">Classification</span></div>
+      </div>
+      <div data-reveal style="background:#fff; border:1px dashed #eae7e0; border-radius:16px; padding:clamp(20px,3vw,28px); transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+        <div style="font-size: 26px; color:#bdbab2;">＋</div>
+        <h4 style="font-weight:700; font-size:22px; line-height:1.25; letter-spacing:-0.3px; margin-top: 8px;">More on the way</h4>
+        <p style="font-weight:340; font-size:15px; line-height:1.5; letter-spacing:-0.1px; color:#3a3a3a; margin: 10px 0 0;">New products are added over time. This slot is reserved so the portfolio grows without a redesign.</p>
+      </div>
+    </div>
+
+    <!-- GlobalData -->
+    <div data-reveal style="display:flex; align-items:baseline; gap:16px; margin:clamp(40px,6vw,64px) 0 18px; flex-wrap:wrap;"><h3 style="font-weight:600; font-size:20px; letter-spacing:-0.4px;">GlobalData Plc</h3><span style="flex:1; min-width:30px; height:1px; background:#e6e4df;"></span><span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.6px; text-transform:uppercase; color:#8a8a8a; white-space:nowrap;">Data Scientist · 2023 — 2024</span></div>
+    <div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 16px;" class="grid2">
+      <div data-reveal data-tilt style="background:#f4f3f0; border:1px solid #eae7e0; border-radius:16px; padding:clamp(20px,3vw,28px); transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s;">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:14px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#6b6b6b;">LLM Agent</span><span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.5px; text-transform:uppercase; color:#8a8a8a; padding:4px 9px; border-radius:50px; border:1px solid #e0ddd6;">Private</span></div>
+        <h4 style="font-weight:700; font-size:22px; line-height:1.25; letter-spacing:-0.3px;">GPT Research Agent</h4>
+        <p style="font-weight:340; font-size:15px; line-height:1.5; letter-spacing:-0.1px; color:#3a3a3a; margin:10px 0 16px;">Ask about any company or topic, get a full analysis. A GPT planner breaks the question down and a LangChain agent runs functions, pulling live backend data into one report.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:7px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">LangChain</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">GPT</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">Streamlit</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">Lambda</span></div>
+      </div>
+      <div data-reveal data-tilt style="background:#f4f3f0; border:1px solid #eae7e0; border-radius:16px; padding:clamp(20px,3vw,28px); transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s;">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:14px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#6b6b6b;">Fine-tuning · MLOps</span><span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.5px; text-transform:uppercase; color:#8a8a8a; padding:4px 9px; border-radius:50px; border:1px solid #e0ddd6;">Case study</span></div>
+        <h4 style="font-weight:700; font-size:22px; line-height:1.25; letter-spacing:-0.3px;">LLM Fine-tuning &amp; Serving</h4>
+        <p style="font-weight:340; font-size:15px; line-height:1.5; letter-spacing:-0.1px; color:#3a3a3a; margin:10px 0 16px;">Phi-3.5 fine-tuned to summarize tweets and BERT to classify tweets &amp; Reddit posts — served as Dockerized FastAPI on EKS with pod autoscaling behind an ALB.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:7px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">Phi-3.5</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">BERT</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">EKS · HPA</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">FastAPI</span></div>
+      </div>
+      <div data-reveal data-tilt style="background:#f4f3f0; border:1px solid #eae7e0; border-radius:16px; padding:clamp(20px,3vw,28px); transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s;">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:14px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#6b6b6b;">NLP · Automation</span><span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.5px; text-transform:uppercase; color:#8a8a8a; padding:4px 9px; border-radius:50px; border:1px solid #e0ddd6;">Private</span></div>
+        <h4 style="font-weight:700; font-size:22px; line-height:1.25; letter-spacing:-0.3px;">Trend Intelligence Engine</h4>
+        <p style="font-weight:340; font-size:15px; line-height:1.5; letter-spacing:-0.1px; color:#3a3a3a; margin:10px 0 16px;">A daily newsletter that writes itself — the top-10 trending companies, concepts &amp; hashtags ranked by a buzz index, with summarized tweets and an auto-generated Trend Pulse deck.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:7px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">NLP</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">Summarization</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">Automation</span></div>
+      </div>
+      <div data-reveal data-tilt style="background:#f4f3f0; border:1px solid #eae7e0; border-radius:16px; padding:clamp(20px,3vw,28px); transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s;">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:14px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#6b6b6b;">Data Automation</span><span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.4px; color:#1f7a4d; padding:4px 9px; border-radius:50px; border:1px solid #bfe6cf; background:#e7f6ec;">◆ 3,000 / quarter</span></div>
+        <h4 style="font-weight:700; font-size:22px; line-height:1.25; letter-spacing:-0.3px;">Automated Competitive Reports</h4>
+        <p style="font-weight:340; font-size:15px; line-height:1.5; letter-spacing:-0.1px; color:#3a3a3a; margin:10px 0 16px;">A Selenium pipeline that mines Twitter &amp; YouTube data and auto-builds quarterly competitive reports — research work that used to take a team, run end-to-end.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:7px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">Selenium</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">Python</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">Reporting</span></div>
+      </div>
+    </div>
+
+    <!-- TCS -->
+    <div data-reveal style="display:flex; align-items:baseline; gap:16px; margin:clamp(40px,6vw,64px) 0 18px; flex-wrap:wrap;"><h3 style="font-weight:600; font-size:20px; letter-spacing:-0.4px;">Tata Consultancy Services</h3><span style="flex:1; min-width:30px; height:1px; background:#e6e4df;"></span><span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.6px; text-transform:uppercase; color:#8a8a8a; white-space:nowrap;">Data Scientist · 2021 — 2023</span></div>
+    <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 16px;" class="grid3">
+      <div data-reveal data-tilt style="background:#f4f3f0; border:1px solid #eae7e0; border-radius:16px; padding:clamp(20px,3vw,28px); transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s;">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:14px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#6b6b6b;">Forecasting</span><span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.4px; color:#1f7a4d; padding:4px 9px; border-radius:50px; border:1px solid #bfe6cf; background:#e7f6ec;">◆ ~90%</span></div>
+        <h4 style="font-weight:700; font-size:22px; line-height:1.25; letter-spacing:-0.3px;">Coca-Cola Demand Forecasting</h4>
+        <p style="font-weight:340; font-size:15px; line-height:1.5; letter-spacing:-0.1px; color:#3a3a3a; margin:10px 0 16px;">Predicts sales for every SKU × store × week for a bottling partner. LightGBM + LSTM / TFT ensembles on promotions, weather &amp; holidays, orchestrated by Step Functions.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:7px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">LightGBM</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">LSTM · TFT</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">SageMaker</span></div>
+      </div>
+      <div data-reveal data-tilt style="background:#f4f3f0; border:1px solid #eae7e0; border-radius:16px; padding:clamp(20px,3vw,28px); transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s;">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:14px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#6b6b6b;">Classification</span><span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.4px; color:#1f7a4d; padding:4px 9px; border-radius:50px; border:1px solid #bfe6cf; background:#e7f6ec;">◆ −15%</span></div>
+        <h4 style="font-weight:700; font-size:22px; line-height:1.25; letter-spacing:-0.3px;">Retail Churn Prediction</h4>
+        <p style="font-weight:340; font-size:15px; line-height:1.5; letter-spacing:-0.1px; color:#3a3a3a; margin:10px 0 16px;">Identifies at-risk customers so retention teams act early. An XGBoost model with heavy feature engineering and interpretability to explain every flag.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:7px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">XGBoost</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">Feature Eng.</span></div>
+      </div>
+      <div data-reveal data-tilt style="background:#f4f3f0; border:1px solid #eae7e0; border-radius:16px; padding:clamp(20px,3vw,28px); transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s;">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:14px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#6b6b6b;">Forecasting</span><span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.4px; color:#1f7a4d; padding:4px 9px; border-radius:50px; border:1px solid #bfe6cf; background:#e7f6ec;">◆ +23%</span></div>
+        <h4 style="font-weight:700; font-size:22px; line-height:1.25; letter-spacing:-0.3px;">Retail Demand Forecasting</h4>
+        <p style="font-weight:340; font-size:15px; line-height:1.5; letter-spacing:-0.1px; color:#3a3a3a; margin:10px 0 16px;">Weekly product-demand forecasts from sales, promotions &amp; external factors, wired into inventory optimization so the right stock is in the right store.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:7px;"><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">LSTM</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">Time Series</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#3a3a3a; padding:5px 10px; border-radius:6px; background:#f4f3f0; border:1px solid #eae7e0;">Inventory Opt.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== JOURNEY — CREAM BLOCK ===== -->
+  <section id="journey" style="max-width:1280px; margin:clamp(56px,8vw,96px) auto 0; padding-left:clamp(20px,4vw,48px); padding-right:clamp(20px,4vw,48px);">
+    <div data-reveal class="block" style="border-radius:24px; padding:clamp(28px,5vw,72px); background: #f3ead6;">
+      <div style="font-family:'JetBrains Mono',monospace; font-weight:500; font-size:13px; line-height:1.3; letter-spacing:1.5px; text-transform:uppercase; color: #7a6a45;">The trajectory</div>
+      <h2 style="font-weight:340; font-size:clamp(34px,5.2vw,64px); line-height:1.08; letter-spacing:-0.02em; margin-top: 16px;">The journey so far.</h2>
+      <div style="display: grid; gap: 14px; margin-top: 40px;">
+        <div style="display:grid; grid-template-columns:150px 1fr; gap:24px; padding-bottom:22px; border-bottom:1px solid rgba(122,106,69,0.22); align-items:start;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.4px; color:#7a6a45; padding-top:4px;">2025 — Now</div>
+          <div><div style="font-weight:560; font-size:clamp(20px,2.4vw,26px); line-height:1.3; letter-spacing:-0.4px;">Senior AI Engineer <span style="font-weight:340; color:#7a6a45;">· Ngenux Solutions</span></div><p style="font-weight:340; font-size:15.5px; line-height:1.5; letter-spacing:-0.1px; color: #5b4f36; margin-top: 8px; max-width: 68ch;">Core engineer on SeekAlfred — building agentic modules, real-time voice agents, enterprise RAG, Text2SQL and document-intelligence platforms across AWS.</p></div>
+        </div>
+        <div style="display:grid; grid-template-columns:150px 1fr; gap:24px; padding-bottom:22px; border-bottom:1px solid rgba(122,106,69,0.22); align-items:start;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.4px; color:#7a6a45; padding-top:4px;">2023 — 2024</div>
+          <div><div style="font-weight:560; font-size:clamp(20px,2.4vw,26px); line-height:1.3; letter-spacing:-0.4px;">Data Scientist <span style="font-weight:340; color:#7a6a45;">· GlobalData Plc</span></div><p style="font-weight:340; font-size:15.5px; line-height:1.5; letter-spacing:-0.1px; color: #5b4f36; margin-top: 8px; max-width: 68ch;">Built GPT-powered LangChain agents, fine-tuned Phi-3.5 &amp; BERT served on EKS, and automated trend intelligence across 3,000 companies.</p></div>
+        </div>
+        <div style="display:grid; grid-template-columns:150px 1fr; gap:24px; padding-bottom:22px; align-items:start;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.4px; color:#7a6a45; padding-top:4px;">2021 — 2023</div>
+          <div><div style="font-weight:560; font-size:clamp(20px,2.4vw,26px); line-height:1.3; letter-spacing:-0.4px;">Data Scientist <span style="font-weight:340; color:#7a6a45;">· Tata Consultancy Services</span></div><p style="font-weight:340; font-size:15.5px; line-height:1.5; letter-spacing:-0.1px; color: #5b4f36; margin-top: 8px; max-width: 68ch;">Productionized ML forecasting for a Coca-Cola bottling partner — LightGBM + LSTM/TFT ensembles that lifted accuracy ~70%→~90% and cut stockouts ~25%.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS — LILAC BLOCK ===== -->
+  <section id="skills" style="max-width:1280px; margin:clamp(56px,8vw,96px) auto 0; padding-left:clamp(20px,4vw,48px); padding-right:clamp(20px,4vw,48px);">
+    <div data-reveal class="block" style="border-radius:24px; padding:clamp(28px,5vw,72px); background: #dacbff;">
+      <div style="font-family:'JetBrains Mono',monospace; font-weight:500; font-size:13px; line-height:1.3; letter-spacing:1.5px; text-transform:uppercase; color: #4c3a7a;">The stack</div>
+      <h2 style="font-weight:340; font-size:clamp(34px,5.2vw,64px); line-height:1.08; letter-spacing:-0.02em; margin-top: 16px;">Tools of the trade.</h2>
+      <div id="skills-grid" style="display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-top: 40px;" class="grid4"></div>
+      <div id="stack-chips" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px;"></div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT / CREDENTIALS — WHITE ===== -->
+  <section id="about" style="max-width:1280px; margin:0 auto; padding-left:clamp(20px,4vw,48px); padding-right:clamp(20px,4vw,48px); padding-top: clamp(56px,8vw,96px); padding-bottom: clamp(40px,6vw,80px);">
+    <div data-reveal style="font-family:'JetBrains Mono',monospace; font-weight:500; font-size:13px; line-height:1.3; letter-spacing:1.5px; text-transform:uppercase; color: #6b6b6b;">About</div>
+    <div style="display: grid; grid-template-columns: 1fr 0.82fr; gap: clamp(24px,5vw,56px); margin-top: 20px; align-items: center;" class="about-grid">
+      <div data-reveal>
+        <h2 style="font-weight:340; font-size: clamp(30px,4.2vw,52px); line-height:1.08; letter-spacing:-0.02em; max-width: 15ch;">Production AI, from the model to the metal.</h2>
+        <p style="font-weight:340; font-size:clamp(19px,2.4vw,26px); line-height:1.38; letter-spacing:-0.3px; color: #2a2a2a; margin-top: 22px; max-width: 52ch;">I design and ship the full stack of intelligent systems — agentic orchestration, retrieval, sub-second voice, and the serverless AWS infrastructure that keeps them alive under real load.</p>
+        <p style="font-weight:330; font-size:18px; line-height:1.5; letter-spacing:-0.2px; color: #2a2a2a; margin-top: 18px; max-width: 52ch;">Based in India, working with teams building the next generation of enterprise AI.</p>
+      </div>
+      <div data-reveal style="position: relative; background: #f4f3f0; border: 1px solid #eae7e0; border-radius: 12px; padding: 14px;">
+        <img src="assets/ravi.png" alt="Ravi Teja Pasupuleti" loading="lazy" style="display: block; width: 100%; height: clamp(360px,52vw,520px); object-fit: cover; object-position: 62% 42%; border-radius: 8px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-weight:400; font-size:12px; line-height:1.3; letter-spacing:0.8px; text-transform:uppercase; color: #6b6b6b; position: absolute; left: 26px; bottom: 26px; background: rgba(255,255,255,0.92); padding: 7px 12px; border-radius: 50px; backdrop-filter: blur(6px);">Ravi Teja Pasupuleti</div>
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px,5vw,56px); margin-top: clamp(32px,5vw,56px);" class="about-grid">
+      <div data-reveal style="display: grid; gap: 24px;">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-weight:400; font-size:12px; line-height:1.3; letter-spacing:0.8px; text-transform:uppercase; color: #6b6b6b; margin-bottom: 12px;">Education</div>
+          <div style="display:flex; justify-content:space-between; align-items:baseline; gap:12px; font-size:16px; letter-spacing:-0.2px; padding:12px 0; border-bottom:1px solid #ece9e3;"><span style="font-weight:600;">Full Stack Data Science</span><span style="font-weight:340; font-size:15.5px; color:#6b6b6b;">iNeuron</span></div>
+          <div style="display:flex; justify-content:space-between; align-items:baseline; gap:12px; font-size:16px; letter-spacing:-0.2px; padding:12px 0;"><span style="font-weight:600;">B.Tech · Electrical &amp; Electronics</span><span style="font-weight:340; font-size:15.5px; color:#6b6b6b;">SRKR · 2017–2021</span></div>
+        </div>
+      </div>
+      <div data-reveal style="display: grid; gap: 24px;">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-weight:400; font-size:12px; line-height:1.3; letter-spacing:0.8px; text-transform:uppercase; color: #6b6b6b; margin-bottom: 12px;">Certifications &amp; achievements</div>
+          <div style="display:flex; justify-content:space-between; align-items:baseline; gap:12px; font-size:16px; letter-spacing:-0.2px; padding:12px 0; border-bottom:1px solid #ece9e3;"><span style="font-weight:600;">Azure Data Fundamentals</span><span style="font-weight:340; font-size:15.5px; color:#6b6b6b;">Microsoft</span></div>
+          <div style="display:flex; justify-content:space-between; align-items:baseline; gap:12px; font-size:16px; letter-spacing:-0.2px; padding:12px 0; border-bottom:1px solid #ece9e3;"><span style="font-weight:600;">Data Scientist Certificate</span><span style="font-weight:340; font-size:15.5px; color:#6b6b6b;">DataCamp</span></div>
+          <div style="display:flex; justify-content:space-between; align-items:baseline; gap:12px; font-size:16px; letter-spacing:-0.2px; padding:12px 0; border-bottom:1px solid #ece9e3;"><span style="font-weight:600;">300+ LeetCode</span><span style="font-weight:340; font-size:15.5px; color:#6b6b6b;">Algorithms</span></div>
+          <div style="display:flex; justify-content:space-between; align-items:baseline; gap:12px; font-size:16px; letter-spacing:-0.2px; padding:12px 0;"><span style="font-weight:600;">200+ StrataScratch</span><span style="font-weight:340; font-size:15.5px; color:#6b6b6b;">SQL</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT — LIME BLOCK ===== -->
+  <section id="contact" style="max-width:1280px; margin:clamp(56px,8vw,96px) auto 0; padding-left:clamp(20px,4vw,48px); padding-right:clamp(20px,4vw,48px);">
+    <div data-reveal class="block" style="border-radius:24px; padding:clamp(28px,5vw,72px); background: #d8f16a; text-align: center;">
+      <div style="font-family:'JetBrains Mono',monospace; font-weight:500; font-size:13px; line-height:1.3; letter-spacing:1.5px; text-transform:uppercase; color: #3d4a12;">Contact</div>
+      <h2 style="font-weight:340; font-size:clamp(34px,5.2vw,64px); line-height:1.08; letter-spacing:-0.02em; margin: 18px auto 0; max-width: 18ch;">Let's build something that actually ships.</h2>
+      <p style="font-weight:340; font-size:clamp(19px,2.4vw,26px); line-height:1.38; letter-spacing:-0.3px; color: #33400f; margin: 20px auto 0; max-width: 46ch;">Recruiters, founders, CTOs — if you're building production AI, I'd like to hear about it.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 34px;">
+        <a href="mailto:prt7036586@gmail.com" class="pill-primary">Email me</a>
+        <a href="https://www.linkedin.com/in/teja01/" target="_blank" rel="noopener" class="pill-secondary">LinkedIn</a>
+        <a href="https://github.com/Ravi-dsarchitect" target="_blank" rel="noopener" class="pill-secondary">GitHub</a>
+      </div>
+      <div style="font-family:'JetBrains Mono',monospace; font-weight:400; font-size:12px; line-height:1.3; letter-spacing:0.8px; text-transform:uppercase; color: #3d4a12; margin-top: 28px;">prt7036586@gmail.com · linkedin.com/in/teja01 · github.com/Ravi-dsarchitect</div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer style="max-width:1280px; margin:0 auto; padding-left:clamp(20px,4vw,48px); padding-right:clamp(20px,4vw,48px); padding-top: clamp(56px,8vw,96px); padding-bottom: 56px;">
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 32px; align-items: flex-start;">
+      <div>
+        <div style="font-weight:340; font-size: clamp(40px,6vw,72px); line-height:1.08; letter-spacing:-0.02em;">Ravi Teja</div>
+        <p style="font-weight:340; font-size:15.5px; line-height:1.5; letter-spacing:-0.1px; color: #6b6b6b; margin-top: 10px; max-width: 34ch;">Senior AI Engineer building agentic, production-grade systems.</p>
+      </div>
+      <div style="display: flex; gap: clamp(32px,6vw,72px); flex-wrap: wrap;">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-weight:400; font-size:12px; line-height:1.3; letter-spacing:0.8px; text-transform:uppercase; color: #6b6b6b; margin-bottom: 14px;">Navigate</div>
+          <div style="display: grid; gap: 8px;"><a href="#work" class="foot-link">Work</a><a href="#systems" class="foot-link">Systems</a><a href="#journey" class="foot-link">Journey</a><a href="#skills" class="foot-link">Skills</a></div>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-weight:400; font-size:12px; line-height:1.3; letter-spacing:0.8px; text-transform:uppercase; color: #6b6b6b; margin-bottom: 14px;">Connect</div>
+          <div style="display: grid; gap: 8px;"><a href="https://seekalfred.ai/" target="_blank" rel="noopener" class="foot-link">SeekAlfred ↗</a><a href="https://www.linkedin.com/in/teja01/" target="_blank" rel="noopener" class="foot-link">LinkedIn ↗</a><a href="https://github.com/Ravi-dsarchitect" target="_blank" rel="noopener" class="foot-link">GitHub ↗</a><a href="mailto:prt7036586@gmail.com" class="foot-link">Email</a></div>
+        </div>
+      </div>
+    </div>
+    <div style="border-top: 1px solid #ece9e3; margin-top: 48px; padding-top: 24px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+      <span style="font-family:'JetBrains Mono',monospace; font-weight:400; font-size:12px; line-height:1.3; letter-spacing:0.8px; text-transform:uppercase; color: #9a9a9a;">© 2026 Ravi Teja Pasupuleti</span>
+      <span style="font-family:'JetBrains Mono',monospace; font-weight:400; font-size:12px; line-height:1.3; letter-spacing:0.8px; text-transform:uppercase; color: #9a9a9a;">Built as an experience, not a résumé</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- data (ported from renderVals) ---------- */
+  var marquee = ['SeekAlfred','Ngenux','GlobalData','TCS','AWS','LangGraph','Bedrock','Claude','OpenAI','Voice AI','RAG','Text2SQL','SageMaker','Kubernetes','FastAPI','PGVector','OpenSearch','Agentic AI'];
+  var skills = [
+    { name:'Agentic AI', cat:'LangGraph' }, { name:'LLMs', cat:'Claude · GPT · Gemini' }, { name:'RAG', cat:'PGVector · OpenSearch' }, { name:'Voice AI', cat:'LiveKit' },
+    { name:'Python', cat:'Advanced' }, { name:'FastAPI', cat:'Microservices' }, { name:'AWS', cat:'ECS · Lambda · Bedrock' }, { name:'SageMaker', cat:'MLOps' },
+    { name:'Docker', cat:'Containers' }, { name:'Kubernetes', cat:'EKS' }, { name:'PostgreSQL', cat:'Relational · vector' }, { name:'Deep Learning', cat:'LSTM · TFT · BERT' },
+    { name:'Bedrock', cat:'Titan · Claude' }, { name:'MCP', cat:'Model Context Protocol' }, { name:'PySpark', cat:'ETL' }, { name:'Forecasting', cat:'LightGBM · XGBoost' }
+  ];
+  var stack = ['Python','FastAPI','Flask','LangGraph','LangChain','OpenAI Agents','Claude','Amazon Bedrock','Gemini','AWS ECS','Lambda','SageMaker','EC2','S3','Glue','Athena','Step Functions','Neptune','DynamoDB','Aurora','PostgreSQL','PGVector','OpenSearch','Pinecone','Chroma','Redis','Docker','Kubernetes','LiveKit','Whisper','NVIDIA NeMo','PySpark','Dagster','Power BI'];
+
+  /* ---------- populate marquee ---------- */
+  var mq = document.getElementById('marquee');
+  for (var pass = 0; pass < 2; pass++) {
+    marquee.forEach(function (m) {
+      var s = document.createElement('span');
+      s.style.cssText = "font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:1px; text-transform:uppercase; color:#e9e9e9;";
+      s.textContent = '✳  ' + m;
+      mq.appendChild(s);
+    });
+  }
+
+  /* ---------- populate skills + stack ---------- */
+  var sg = document.getElementById('skills-grid');
+  skills.forEach(function (s) {
+    var card = document.createElement('div');
+    card.className = 'skill-card';
+    var n = document.createElement('div');
+    n.style.cssText = 'font-weight: 600; font-size: 16px; letter-spacing: -0.2px;';
+    n.textContent = s.name;
+    var c = document.createElement('div');
+    c.style.cssText = "font-family:'JetBrains Mono',monospace; font-weight:400; font-size:12px; line-height:1.3; letter-spacing:0.8px; text-transform:uppercase; color: #6b5b95; margin-top: 5px;";
+    c.textContent = s.cat;
+    card.appendChild(n); card.appendChild(c); sg.appendChild(card);
+  });
+  var stc = document.getElementById('stack-chips');
+  stack.forEach(function (t) {
+    var chip = document.createElement('span');
+    chip.style.cssText = "font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:0.2px; color:#3a2f5c; padding:8px 13px; border-radius:8px; background:rgba(255,255,255,0.55); border:1px solid rgba(76,58,122,0.15);";
+    chip.textContent = t;
+    stc.appendChild(chip);
+  });
+
+  /* ---------- architecture diagrams ---------- */
+  var archData = {
+    agentic: { title: 'agentic-orchestration.svg', caption: 'A LangGraph planner routes to specialist tools, grounds on vector retrieval, and self-corrects before returning decision-ready output.',
+      nodes: [ {id:'user',x:70,y:150,label:'User',sub:'query',c:'navy'},{id:'plan',x:250,y:150,label:'Planner',sub:'LangGraph',c:'purple'},{id:'t1',x:470,y:60,label:'Retrieval',sub:'PGVector',c:'green'},{id:'t2',x:470,y:150,label:'Tools',sub:'APIs',c:'green'},{id:'t3',x:470,y:240,label:'Reasoner',sub:'Claude',c:'green'},{id:'crit',x:690,y:150,label:'Critic',sub:'self-correct',c:'magenta'},{id:'out',x:880,y:150,label:'Decision',sub:'output',c:'navy'} ],
+      edges: [['user','plan'],['plan','t1'],['plan','t2'],['plan','t3'],['t1','crit'],['t2','crit'],['t3','crit'],['crit','out'],['crit','plan']] },
+    rag: { title: 'enterprise-rag.svg', caption: 'Documents ingested via Lambda, embedded into OpenSearch; queries retrieve context, Bedrock generates, with human handoff and Salesforce ticketing.',
+      nodes: [ {id:'docs',x:70,y:70,label:'Docs',sub:'S3',c:'green'},{id:'ing',x:250,y:70,label:'Ingest',sub:'Lambda',c:'purple'},{id:'vec',x:250,y:220,label:'Vector DB',sub:'OpenSearch',c:'navy'},{id:'q',x:70,y:220,label:'Query',sub:'user',c:'navy'},{id:'ret',x:470,y:150,label:'Retrieve',sub:'top-k',c:'green'},{id:'gen',x:690,y:150,label:'Generate',sub:'Bedrock',c:'purple'},{id:'ans',x:880,y:70,label:'Answer',sub:'grounded',c:'navy'},{id:'hand',x:880,y:230,label:'Handoff',sub:'Salesforce',c:'magenta'} ],
+      edges: [['docs','ing'],['ing','vec'],['q','ret'],['vec','ret'],['ret','gen'],['gen','ans'],['gen','hand']] },
+    voice: { title: 'voice2voice.svg', caption: 'Sub-second streaming pipeline over LiveKit WebRTC. VAD-based barge-in interrupts TTS the moment the user speaks; Redis holds session memory.',
+      nodes: [ {id:'mic',x:70,y:150,label:'Speech',sub:'mic',c:'navy'},{id:'kit',x:230,y:150,label:'LiveKit',sub:'WebRTC',c:'purple'},{id:'stt',x:410,y:150,label:'STT',sub:'Sarvam',c:'green'},{id:'llm',x:590,y:150,label:'LLM',sub:'Claude 4.5',c:'purple'},{id:'tts',x:770,y:150,label:'TTS',sub:'Sarvam',c:'green'},{id:'spk',x:920,y:150,label:'Voice',sub:'reply',c:'navy'},{id:'mem',x:590,y:250,label:'Memory',sub:'Redis',c:'magenta'} ],
+      edges: [['mic','kit'],['kit','stt'],['stt','llm'],['llm','tts'],['tts','spk'],['llm','mem'],['mem','llm']] },
+    text2sql: { title: 'text2sql.svg', caption: 'Natural language grounded on schema retrieval, generated to SQL, executed on Athena, with a self-correcting loop that retries on error until valid.',
+      nodes: [ {id:'nl',x:70,y:150,label:'NL query',sub:'user',c:'navy'},{id:'sch',x:250,y:60,label:'Schema',sub:'PGVector',c:'green'},{id:'gen',x:250,y:230,label:'Generate',sub:'Bedrock',c:'purple'},{id:'sql',x:470,y:150,label:'SQL',sub:'validate',c:'purple'},{id:'exec',x:690,y:150,label:'Execute',sub:'Athena',c:'green'},{id:'fix',x:690,y:270,label:'Correct',sub:'retry',c:'magenta'},{id:'res',x:880,y:150,label:'Result',sub:'80% acc',c:'navy'} ],
+      edges: [['nl','sch'],['nl','gen'],['sch','sql'],['gen','sql'],['sql','exec'],['exec','res'],['exec','fix'],['fix','gen']] },
+    docintel: { title: 'document-intelligence.svg', caption: 'Event-driven on AWS. A multi-threaded SQS listener on ECS fans out to a multi-engine GenAI framework; structured results land in Aurora.',
+      nodes: [ {id:'up',x:70,y:150,label:'Upload',sub:'S3',c:'green'},{id:'sqs',x:250,y:150,label:'SQS',sub:'queue',c:'purple'},{id:'ecs',x:440,y:150,label:'Listener',sub:'ECS · threads',c:'navy'},{id:'cls',x:650,y:70,label:'Classify',sub:'Gemini',c:'green'},{id:'ext',x:650,y:230,label:'Extract',sub:'Gemini',c:'green'},{id:'db',x:880,y:150,label:'Aurora',sub:'structured',c:'navy'} ],
+      edges: [['up','sqs'],['sqs','ecs'],['ecs','cls'],['ecs','ext'],['cls','db'],['ext','db']] }
+  };
+  var archOrder = [ ['agentic','Agentic AI'],['rag','Enterprise RAG'],['voice','Voice AI'],['text2sql','Text2SQL'],['docintel','Document Intel'] ];
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  function svgEl(name, attrs) {
+    var el = document.createElementNS(SVGNS, name);
+    if (attrs) for (var k in attrs) { if (attrs.hasOwnProperty(k)) el.setAttribute(k, attrs[k]); }
+    return el;
+  }
+  function buildDiagram(key) {
+    var data = archData[key];
+    var pal = { navy:'#17143a', purple:'#6b4eff', green:'#12996b', magenta:'#d61f8f' };
+    var W = 980, H = 320;
+    var byId = {}; data.nodes.forEach(function (n) { byId[n.id] = n; });
+    var svg = svgEl('svg', { viewBox: '0 0 ' + W + ' ' + H, width: '100%' });
+    svg.style.display = 'block'; svg.style.maxHeight = '340px';
+    var defs = svgEl('defs');
+    var marker = svgEl('marker', { id:'ahl', markerWidth:8, markerHeight:8, refX:6, refY:3, orient:'auto' });
+    marker.appendChild(svgEl('path', { d:'M0,0 L6,3 L0,6 Z', fill:'rgba(10,10,10,0.35)' }));
+    defs.appendChild(marker); svg.appendChild(defs);
+    data.edges.forEach(function (e, i) {
+      var a = byId[e[0]], b = byId[e[1]]; if (!a || !b) return;
+      var mx = (a.x + b.x) / 2;
+      var d = 'M ' + (a.x+46) + ' ' + a.y + ' C ' + mx + ' ' + a.y + ', ' + mx + ' ' + b.y + ', ' + (b.x-46) + ' ' + b.y;
+      svg.appendChild(svgEl('path', { d:d, fill:'none', stroke:'rgba(10,10,10,0.16)', 'stroke-width':1.5, 'marker-end':'url(#ahl)' }));
+      var pulse = svgEl('path', { d:d, fill:'none', stroke:pal[a.c], 'stroke-width':2.4, 'stroke-dasharray':'6 190', 'stroke-linecap':'round', opacity:0.95 });
+      if (!reduced) {
+        pulse.style.animation = 'dash ' + (2.4 + (i % 4) * 0.5) + 's linear infinite';
+        pulse.style.animationDelay = (i * 0.22) + 's';
+      }
+      svg.appendChild(pulse);
+    });
+    data.nodes.forEach(function (n) {
+      var g = svgEl('g');
+      g.appendChild(svgEl('rect', { x:n.x-46, y:n.y-26, width:92, height:52, rx:12, fill:'#ffffff', stroke:'#e6e4df', 'stroke-width':1.4 }));
+      g.appendChild(svgEl('circle', { cx:n.x-32, cy:n.y-12, r:3.5, fill:pal[n.c] }));
+      var t1 = svgEl('text', { x:n.x, y:n.y-1, 'text-anchor':'middle', fill:'#0a0a0a', 'font-size':13, 'font-family':'Inter', 'font-weight':600 });
+      t1.textContent = n.label;
+      var t2 = svgEl('text', { x:n.x, y:n.y+14, 'text-anchor':'middle', fill:'#8a8a8a', 'font-size':10, 'font-family':'JetBrains Mono' });
+      t2.textContent = n.sub;
+      g.appendChild(t1); g.appendChild(t2);
+      svg.appendChild(g);
+    });
+    return svg;
+  }
+  var activeArch = 'agentic';
+  var tabsWrap = document.getElementById('archTabs');
+  var diagramWrap = document.getElementById('archDiagram');
+  var titleEl = document.getElementById('archTitle');
+  var captionEl = document.getElementById('archCaption');
+  var tabEls = {};
+  function renderArch() {
+    var data = archData[activeArch];
+    diagramWrap.innerHTML = '';
+    diagramWrap.appendChild(buildDiagram(activeArch));
+    titleEl.textContent = data.title;
+    captionEl.textContent = data.caption;
+    archOrder.forEach(function (pair) {
+      var key = pair[0];
+      if (tabEls[key]) tabEls[key].className = 'arch-tab' + (key === activeArch ? ' active' : '');
+    });
+  }
+  archOrder.forEach(function (pair) {
+    var key = pair[0], label = pair[1];
+    var btn = document.createElement('button');
+    btn.className = 'arch-tab' + (key === activeArch ? ' active' : '');
+    btn.textContent = label;
+    btn.addEventListener('click', function () { activeArch = key; renderArch(); });
+    tabEls[key] = btn;
+    tabsWrap.appendChild(btn);
+  });
+  renderArch();
+
+  /* ---------- reveal-on-scroll ---------- */
+  (function setupReveals() {
+    var root = document.getElementById('root');
+    var els = root.querySelectorAll('[data-reveal]');
+    if (reduced || !('IntersectionObserver' in window)) return;
+    els.forEach(function (el) {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(26px)';
+      el.style.transition = 'opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1)';
+      el.style.willChange = 'opacity, transform';
+    });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          var el = en.target;
+          var sib = Array.prototype.indexOf.call(el.parentElement ? el.parentElement.children : [], el);
+          el.style.transitionDelay = Math.min(sib, 5) * 60 + 'ms';
+          el.style.opacity = '1'; el.style.transform = 'none';
+          io.unobserve(el);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+
+  /* ---------- scroll progress ---------- */
+  (function setupProgress() {
+    var bar = document.getElementById('progress'); if (!bar) return;
+    function onScroll() {
+      var h = document.documentElement;
+      var p = h.scrollTop / (h.scrollHeight - h.clientHeight || 1);
+      bar.style.width = Math.max(0, Math.min(1, p)) * 100 + '%';
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+
+  /* ---------- card tilt ---------- */
+  (function setupTilt() {
+    if (reduced) return;
+    document.querySelectorAll('[data-tilt]').forEach(function (card) {
+      card.style.transformStyle = 'preserve-3d';
+      card.addEventListener('mousemove', function (e) {
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transition = 'transform .1s ease-out, box-shadow .1s';
+        card.style.transform = 'perspective(1000px) rotateX(' + (-py*5).toFixed(2) + 'deg) rotateY(' + (px*6).toFixed(2) + 'deg) translateY(-4px)';
+        card.style.boxShadow = '0 18px 40px rgba(0,0,0,0.12)';
+        card.style.borderColor = '#d8d4cb';
+      });
+      card.addEventListener('mouseleave', function () {
+        card.style.transition = 'transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s, border-color .5s';
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+        card.style.boxShadow = '';
+        card.style.borderColor = '';
+      });
+    });
+  })();
+
+  /* ---------- Three.js 3D scenes (hero mesh + navy particle network) ---------- */
+  (function setup3D() {
+    if (reduced) return;
+    var mx = 0, my = 0, tmx = 0, tmy = 0;
+    var resizers = [];
+    window.addEventListener('mousemove', function (e) {
+      tmx = e.clientX / window.innerWidth - 0.5;
+      tmy = e.clientY / window.innerHeight - 0.5;
+    }, { passive: true });
+    window.addEventListener('resize', function () { resizers.forEach(function (fn) { fn(); }); });
+
+    import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js').then(function (THREE) {
+      /* HERO: monochrome wireframe agent mesh */
+      var hc = document.getElementById('heroCanvas');
+      if (hc) {
+        var rnd = new THREE.WebGLRenderer({ canvas: hc, antialias: true, alpha: true });
+        rnd.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        var scene = new THREE.Scene();
+        var cam = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+        cam.position.set(0, 0, 4.7);
+        var geo = new THREE.IcosahedronGeometry(1.6, 2);
+        var wire = new THREE.LineSegments(new THREE.WireframeGeometry(geo), new THREE.LineBasicMaterial({ color: 0x0a0a0a, transparent: true, opacity: 0.28 }));
+        var dots = new THREE.Points(geo, new THREE.PointsMaterial({ color: 0x0a0a0a, size: 0.07 }));
+        var grp = new THREE.Group(); grp.add(wire); grp.add(dots); scene.add(grp);
+        var basePos = geo.attributes.position.array.slice();
+        var resize = function () {
+          var w = hc.clientWidth || 320, h = hc.clientHeight || 320;
+          rnd.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix();
+        };
+        resize(); resizers.push(resize);
+        requestAnimationFrame(resize);
+        var clock = new THREE.Clock();
+        var loop = function () {
+          requestAnimationFrame(loop);
+          var t = clock.getElapsedTime();
+          mx += (tmx - mx) * 0.05; my += (tmy - my) * 0.05;
+          grp.rotation.y = t * 0.18 + mx * 0.9;
+          grp.rotation.x = Math.sin(t * 0.25) * 0.15 + my * 0.7;
+          var p = geo.attributes.position.array;
+          for (var i = 0; i < p.length; i += 3) {
+            var bx = basePos[i], by = basePos[i+1], bz = basePos[i+2];
+            var n = 1 + Math.sin(t * 1.1 + bx * 2 + by * 1.5) * 0.045;
+            p[i] = bx * n; p[i+1] = by * n; p[i+2] = bz * n;
+          }
+          geo.attributes.position.needsUpdate = true;
+          rnd.render(scene, cam);
+        };
+        loop();
+      }
+
+      /* NAVY: particle agent network */
+      var nc = document.getElementById('navyCanvas');
+      if (nc) {
+        var rnd2 = new THREE.WebGLRenderer({ canvas: nc, antialias: true, alpha: true });
+        rnd2.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        var scene2 = new THREE.Scene();
+        var cam2 = new THREE.PerspectiveCamera(60, 2, 0.1, 100);
+        cam2.position.set(0, 0, 8);
+        var N = window.innerWidth < 768 ? 34 : 60;
+        var pos = new Float32Array(N * 3), vel = [];
+        for (var k = 0; k < N; k++) {
+          pos[k*3] = (Math.random()-0.5)*14; pos[k*3+1] = (Math.random()-0.5)*7; pos[k*3+2] = (Math.random()-0.5)*4;
+          vel.push([(Math.random()-0.5)*0.008, (Math.random()-0.5)*0.008, (Math.random()-0.5)*0.006]);
+        }
+        var pGeo = new THREE.BufferGeometry(); pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+        var pts = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0xcfc6ff, size: 0.12, transparent: true, opacity: 0.9 }));
+        scene2.add(pts);
+        var lGeo = new THREE.BufferGeometry();
+        var maxSeg = N * 6;
+        var lPos = new Float32Array(maxSeg * 6);
+        lGeo.setAttribute('position', new THREE.BufferAttribute(lPos, 3));
+        var lines = new THREE.LineSegments(lGeo, new THREE.LineBasicMaterial({ color: 0x8f82e0, transparent: true, opacity: 0.35 }));
+        scene2.add(lines);
+        var resize2 = function () {
+          var w = nc.clientWidth || 600, h = nc.clientHeight || 300;
+          rnd2.setSize(w, h, false); cam2.aspect = w / h; cam2.updateProjectionMatrix();
+        };
+        resize2(); resizers.push(resize2);
+        var loop2 = function () {
+          requestAnimationFrame(loop2);
+          for (var i = 0; i < N; i++) {
+            pos[i*3] += vel[i][0]; pos[i*3+1] += vel[i][1]; pos[i*3+2] += vel[i][2];
+            if (Math.abs(pos[i*3]) > 7) vel[i][0] *= -1;
+            if (Math.abs(pos[i*3+1]) > 3.6) vel[i][1] *= -1;
+            if (Math.abs(pos[i*3+2]) > 2) vel[i][2] *= -1;
+          }
+          pGeo.attributes.position.needsUpdate = true;
+          var s = 0;
+          for (var a = 0; a < N && s < maxSeg; a++) {
+            for (var b = a+1; b < N && s < maxSeg; b++) {
+              var dx = pos[a*3]-pos[b*3], dy = pos[a*3+1]-pos[b*3+1], dz = pos[a*3+2]-pos[b*3+2];
+              if (dx*dx+dy*dy+dz*dz < 5.3) {
+                lPos[s*6]=pos[a*3]; lPos[s*6+1]=pos[a*3+1]; lPos[s*6+2]=pos[a*3+2];
+                lPos[s*6+3]=pos[b*3]; lPos[s*6+4]=pos[b*3+1]; lPos[s*6+5]=pos[b*3+2]; s++;
+              }
+            }
+          }
+          for (var c = s*6; c < lPos.length; c++) lPos[c] = 0;
+          lGeo.attributes.position.needsUpdate = true; lGeo.setDrawRange(0, s*2);
+          cam2.position.x += (mx * 1.6 - cam2.position.x) * 0.04;
+          cam2.position.y += (-my * 1.0 - cam2.position.y) * 0.04;
+          cam2.lookAt(0, 0, 0);
+          rnd2.render(scene2, cam2);
+        };
+        loop2();
+      }
+    }).catch(function (e) { console.log('[3D] three import failed', e); });
+  })();
+})();
+</script>
+</body>
+</html>

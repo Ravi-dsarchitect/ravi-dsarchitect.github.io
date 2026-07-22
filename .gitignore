@@ -11,3 +11,6 @@ desktop.ini
 # Node (in case tooling is added later)
 node_modules/
 npm-debug.log*
+
+# local-only colour preview tool (not part of the site)
+color-playground.html

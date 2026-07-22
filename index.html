@@ -4,14 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ravi Teja Pasupuleti — Senior AI Engineer</title>
-<meta name="description" content="Ravi Teja Pasupuleti — Senior AI Engineer building agentic, production-grade AI systems: multi-agent orchestration, LLMs & RAG, sub-second Voice AI, Text2SQL and serverless AWS MLOps.">
+<meta name="description" content="Ravi Teja Pasupuleti — Senior AI Engineer. I build AI systems that decide and act in production: agentic orchestration, LLMs & RAG, sub-second Voice AI, self-correcting Text2SQL, and serverless AWS MLOps.">
 <meta name="author" content="Ravi Teja Pasupuleti">
+<meta name="theme-color" content="#0a0a0a">
 <link rel="canonical" href="https://ravi-dsarchitect.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='16'%20fill='%230a0a0a'/%3E%3Ctext%20x='32'%20y='45'%20font-family='Inter,system-ui,sans-serif'%20font-size='40'%20font-weight='700'%20fill='%23ffffff'%20text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ravi Teja Pasupuleti — Senior AI Engineer">
-<meta property="og:description" content="Engineering AI that thinks, decides & ships. Agentic systems, LLMs & RAG, Voice AI, and serverless AWS MLOps in production.">
+<meta property="og:description" content="I build AI systems that decide and act in production. Agentic orchestration, LLMs & RAG, sub-second Voice AI, self-correcting Text2SQL, and serverless AWS MLOps.">
 <meta property="og:url" content="https://ravi-dsarchitect.github.io/">
 <meta property="og:image" content="https://ravi-dsarchitect.github.io/assets/ravi.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -32,16 +34,43 @@
   ::-webkit-scrollbar-thumb { background: #cfccc4; border-radius: 8px; }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   @keyframes dash { to { stroke-dashoffset: -200; } }
+  @keyframes livepulse { 0% { box-shadow: 0 0 0 0 rgba(216,241,106,0.55); } 70% { box-shadow: 0 0 0 7px rgba(216,241,106,0); } 100% { box-shadow: 0 0 0 0 rgba(216,241,106,0); } }
+
+  /* anchor targets clear the 60px sticky nav */
+  #top, section[id] { scroll-margin-top: 76px; }
+
+  /* keyboard focus (quality floor) */
+  a:focus-visible, button:focus-visible { outline: 2px solid #0a0a0a; outline-offset: 3px; border-radius: 6px; }
+  .block a:focus-visible, .navcta-sec:focus-visible { outline-color: #d8f16a; }
+  .pill-ondark:focus-visible { outline: 2px solid #d8f16a; outline-offset: 3px; }
+
+  /* marquee pause on hover */
+  .marquee-track:hover { animation-play-state: paused; }
+
+  /* hero load-in sequence */
+  [data-hero] { opacity: 0; transform: translateY(20px); }
+  .hero-in [data-hero] { opacity: 1; transform: none; transition: opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1); }
+  .hero-in [data-hero="0"] { transition-delay: 0ms; }
+  .hero-in [data-hero="1"] { transition-delay: 130ms; }
+  .hero-in [data-hero="2"] { transition-delay: 280ms; }
+  .hero-in [data-hero="3"] { transition-delay: 430ms; }
+  @media (prefers-reduced-motion: reduce) {
+    [data-hero] { opacity: 1 !important; transform: none !important; }
+  }
+
+  /* mobile nav toggle */
+  .nav-toggle { display: none; }
 
   /* hover behaviors (ported from style-hover bindings) */
-  .navlink { font-weight:450; font-size:15px; letter-spacing:-0.1px; color:#0a0a0a; padding:8px 12px; border-radius:9999px; transition:background .2s; }
+  .navlink { font-weight:450; font-size:15px; letter-spacing:-0.1px; color:#0a0a0a; padding:8px 12px; border-radius:9999px; transition:background .2s, color .2s; }
   .navlink:hover { background:#f4f3f0; }
+  .navlink.active { background:#0a0a0a; color:#fff; }
   .pill-primary { display:inline-flex; align-items:center; gap:8px; font-weight:480; font-size:15px; letter-spacing:-0.1px; background:#0a0a0a; color:#fff; padding:11px 22px; border-radius:50px; border:none; cursor:pointer; transition:transform .18s ease; }
   .pill-primary:hover { transform:scale(1.04); color:#fff; }
   .pill-secondary { display:inline-flex; align-items:center; gap:8px; font-weight:480; font-size:15px; letter-spacing:-0.1px; background:#fff; color:#0a0a0a; padding:11px 22px; border-radius:50px; border:1px solid #e0ddd6; cursor:pointer; transition:transform .18s ease, background .18s; }
   .pill-secondary:hover { transform:scale(1.04); background:#f4f3f0; }
-  .pill-ondark { display:inline-flex; align-items:center; gap:8px; font-weight:480; font-size:15px; letter-spacing:-0.1px; background:#fff; color:#17143a; padding:12px 24px; border-radius:50px; border:none; cursor:pointer; transition:transform .18s ease; }
-  .pill-ondark:hover { transform:scale(1.04); color:#17143a; }
+  .pill-ondark { display:inline-flex; align-items:center; gap:8px; font-weight:480; font-size:15px; letter-spacing:-0.1px; background:#fff; color:#0b0b10; padding:12px 24px; border-radius:50px; border:none; cursor:pointer; transition:transform .18s ease; }
+  .pill-ondark:hover { transform:scale(1.04); color:#0b0b10; }
   .skill-card { background:#fff; border:1px solid rgba(76,58,122,0.12); border-radius:12px; padding:16px 18px; transition:transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s; }
   .skill-card:hover { transform:translateY(-3px); box-shadow:0 8px 22px rgba(76,58,122,0.14); }
   .arch-tab { font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:0.3px; cursor:pointer; white-space:nowrap; padding:9px 16px; border-radius:50px; transition:all .25s; background:#ffffff; color:#0a0a0a; border:1px solid rgba(10,10,10,0.18); }
@@ -51,11 +80,18 @@
 
   @media (max-width: 900px) {
     .navlinks { display: none !important; }
+    .nav-toggle { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; border: 1px solid #e0ddd6; background: #fff; cursor: pointer; color: #0a0a0a; }
     .grid4 { grid-template-columns: repeat(2,1fr) !important; }
     .grid3 { grid-template-columns: 1fr !important; }
     .grid2 { grid-template-columns: 1fr !important; }
     .about-grid { grid-template-columns: 1fr !important; }
   }
+  /* mobile menu panel */
+  #mobileMenu { display: none; position: fixed; top: 60px; left: 0; right: 0; z-index: 79; background: rgba(255,255,255,0.98); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid #ece9e3; padding: 12px clamp(20px,4vw,48px) 20px; flex-direction: column; gap: 4px; }
+  #mobileMenu.open { display: flex; }
+  #mobileMenu a { font-weight: 500; font-size: 17px; letter-spacing: -0.2px; color: #0a0a0a; padding: 12px 8px; border-radius: 10px; }
+  #mobileMenu a:hover, #mobileMenu a:focus-visible { background: #f4f3f0; }
+  #mobileMenu .mm-sep { height: 1px; background: #ece9e3; margin: 6px 0; }
   @media (max-width: 768px) {
     .block { border-radius: 0 !important; margin-left: -24px !important; margin-right: -24px !important; padding-left: 24px !important; padding-right: 24px !important; }
   }
@@ -89,12 +125,27 @@
     <div style="display: flex; align-items: center; gap: 10px;">
       <a class="navcta-sec pill-secondary" href="https://www.linkedin.com/in/teja01/" target="_blank" rel="noopener">LinkedIn</a>
       <a class="pill-primary" href="#contact">Get in touch</a>
+      <button id="navToggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      </button>
     </div>
   </nav>
 
+  <!-- ===== MOBILE MENU ===== -->
+  <div id="mobileMenu" role="menu" aria-label="Site navigation">
+    <a href="#work" role="menuitem">Work</a>
+    <a href="#systems" role="menuitem">Systems</a>
+    <a href="#journey" role="menuitem">Journey</a>
+    <a href="#skills" role="menuitem">Skills</a>
+    <a href="#about" role="menuitem">About</a>
+    <div class="mm-sep"></div>
+    <a href="https://www.linkedin.com/in/teja01/" target="_blank" rel="noopener" role="menuitem">LinkedIn ↗</a>
+    <a href="#contact" role="menuitem">Get in touch</a>
+  </div>
+
   <!-- ===== MARQUEE STRIP ===== -->
   <div style="background: #0a0a0a; color: #fff; height: 40px; display: flex; align-items: center; overflow: hidden; white-space: nowrap;">
-    <div id="marquee" style="display: inline-flex; gap: 42px; padding-right: 42px; animation: marquee 34s linear infinite; will-change: transform;"></div>
+    <div id="marquee" class="marquee-track" style="display: inline-flex; gap: 42px; padding-right: 42px; animation: marquee 34s linear infinite; will-change: transform;"></div>
   </div>
 
   <div id="top"></div>
@@ -103,15 +154,15 @@
   <section style="max-width:1280px; margin:0 auto; padding-left:clamp(20px,4vw,48px); padding-right:clamp(20px,4vw,48px); padding-top: clamp(64px,9vw,120px); padding-bottom: clamp(48px,7vw,96px);">
     <div style="display: grid; grid-template-columns: 1.08fr 0.92fr; gap: clamp(28px,5vw,56px); align-items: center;" class="about-grid">
       <div>
-        <div data-reveal style="font-family:'JetBrains Mono',monospace; font-weight:500; font-size:13px; line-height:1.3; letter-spacing:1.5px; text-transform:uppercase; color: #0a0a0a;">Senior AI Engineer — Agentic Systems</div>
-        <h1 data-reveal style="font-weight:340; font-size:clamp(46px,8vw,86px); line-height:1.0; letter-spacing:-0.035em; max-width: 14ch; margin-top: 22px;">Engineering AI that thinks, decides &amp; ships.</h1>
-        <p data-reveal style="font-weight:330; font-size:clamp(18px,2vw,20px); line-height:1.45; letter-spacing:-0.14px; max-width: 52ch; margin-top: 28px; color: #2a2a2a;">I'm <strong style="font-weight: 540;">Ravi Teja Pasupuleti</strong> — I build agentic AI systems that turn large language models into production-grade decision engines. Not demos. Systems that run.</p>
-        <div data-reveal style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px;">
+        <div data-hero="0" style="font-family:'JetBrains Mono',monospace; font-weight:500; font-size:13px; line-height:1.3; letter-spacing:1.5px; text-transform:uppercase; color: #0a0a0a;">Senior AI Engineer · Agentic Systems on AWS</div>
+        <h1 data-hero="1" style="font-weight:340; font-size:clamp(46px,8vw,86px); line-height:1.0; letter-spacing:-0.035em; max-width: 15ch; margin-top: 22px;">I build AI systems that decide and act in production.</h1>
+        <p data-hero="2" style="font-weight:330; font-size:clamp(18px,2vw,20px); line-height:1.45; letter-spacing:-0.14px; max-width: 52ch; margin-top: 28px; color: #2a2a2a;"><strong style="font-weight: 540;">Ravi Teja Pasupuleti</strong>, Senior AI Engineer. Five years turning large language models into agentic systems that reason, retrieve, and act under real load — sub-second voice, self-correcting Text2SQL, and RAG platforms running live on AWS.</p>
+        <div data-hero="3" style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px;">
           <a href="#work" class="pill-primary">See the work</a>
           <a href="#contact" class="pill-secondary">Get in touch</a>
         </div>
       </div>
-      <div data-reveal style="position: relative; aspect-ratio: 1 / 1; min-height: 320px;">
+      <div data-hero="2" style="position: relative; aspect-ratio: 1 / 1; min-height: 320px;">
         <canvas id="heroCanvas" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block;"></canvas>
       </div>
     </div>
@@ -141,26 +192,27 @@
 
   <!-- ===== FLAGSHIP — NAVY BLOCK ===== -->
   <section style="max-width:1280px; margin:clamp(56px,8vw,96px) auto 0; padding-left:clamp(20px,4vw,48px); padding-right:clamp(20px,4vw,48px);">
-    <div data-reveal class="block" style="border-radius:24px; padding:clamp(28px,5vw,72px); background: #17143a; color: #fff; position: relative; overflow: hidden;">
+    <div data-reveal class="block" style="border-radius:24px; padding:clamp(28px,5vw,72px); background: #0b0b10; color: #fff; position: relative; overflow: hidden;">
       <canvas id="navyCanvas" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;"></canvas>
-      <div style="font-family:'JetBrains Mono',monospace; font-weight:500; font-size:13px; line-height:1.3; letter-spacing:1.5px; text-transform:uppercase; color: #b9aeff; position: relative; z-index: 1;">Flagship — Live</div>
+      <div aria-hidden="true" style="position:absolute; inset:0; z-index:0; pointer-events:none; background: radial-gradient(120% 90% at 82% 8%, rgba(216,241,106,0.10), rgba(216,241,106,0.0) 42%), radial-gradient(90% 80% at 8% 100%, rgba(255,255,255,0.05), rgba(255,255,255,0) 46%);"></div>
+      <div style="font-family:'JetBrains Mono',monospace; font-weight:500; font-size:13px; line-height:1.3; letter-spacing:1.5px; text-transform:uppercase; color: #c7d59a; position: relative; z-index: 1; display:inline-flex; align-items:center; gap:8px;"><span style="width:7px; height:7px; border-radius:50%; background:#d8f16a; box-shadow:0 0 0 0 rgba(216,241,106,0.6); animation:livepulse 2.4s ease-out infinite;"></span>Flagship — Live</div>
       <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(24px,5vw,56px); margin-top: 18px; align-items: end; position: relative; z-index: 1;" class="about-grid">
         <div>
           <h2 style="font-weight:340; font-size:clamp(34px,5.2vw,64px); line-height:1.08; letter-spacing:-0.02em; color: #fff; max-width: 16ch;">SeekAlfred — the AI Chief of Staff for the C-suite.</h2>
-          <p style="font-weight:340; font-size:clamp(19px,2.4vw,26px); line-height:1.38; letter-spacing:-0.3px; color: #d3cdf2; margin-top: 22px; max-width: 46ch;">Unifies fragmented signals across the marketing &amp; revenue stack — Google Ads, Meta, LinkedIn Ads, HubSpot — into decision-ready recommendations.</p>
+          <p style="font-weight:340; font-size:clamp(19px,2.4vw,26px); line-height:1.38; letter-spacing:-0.3px; color: #cfcfd6; margin-top: 22px; max-width: 46ch;">Unifies fragmented signals across the marketing &amp; revenue stack — Google Ads, Meta, LinkedIn Ads, HubSpot — into decision-ready recommendations.</p>
           <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px;">
             <a href="https://seekalfred.ai/" target="_blank" rel="noopener" class="pill-ondark">Visit seekalfred.ai →</a>
           </div>
         </div>
         <div>
-          <div style="font-family:'JetBrains Mono',monospace; font-weight:400; font-size:12px; line-height:1.3; letter-spacing:0.8px; text-transform:uppercase; color: #9a90d6; margin-bottom: 14px;">Modules I built</div>
+          <div style="font-family:'JetBrains Mono',monospace; font-weight:400; font-size:12px; line-height:1.3; letter-spacing:0.8px; text-transform:uppercase; color: #9a9aa6; margin-bottom: 14px;">Modules I built</div>
           <div style="display: grid; gap: 10px;">
-            <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:10px; padding:14px 16px; font-weight:480; font-size:16px; letter-spacing:-0.2px; color:#fff;">Spend-Mix Optimization</div>
-            <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:10px; padding:14px 16px; font-weight:480; font-size:16px; letter-spacing:-0.2px; color:#fff;">Creative Fatigue Detection</div>
-            <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:10px; padding:14px 16px; font-weight:480; font-size:16px; letter-spacing:-0.2px; color:#fff;">AI Visibility Score</div>
+            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:14px 16px; font-weight:480; font-size:16px; letter-spacing:-0.2px; color:#fff;">Spend-Mix Optimization</div>
+            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:14px 16px; font-weight:480; font-size:16px; letter-spacing:-0.2px; color:#fff;">Creative Fatigue Detection</div>
+            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:14px 16px; font-weight:480; font-size:16px; letter-spacing:-0.2px; color:#fff;">AI Visibility Score</div>
           </div>
           <div style="display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px;">
-            <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#d3cdf2; padding:5px 10px; border-radius:6px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.16);">LangGraph</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#d3cdf2; padding:5px 10px; border-radius:6px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.16);">PGVector</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#d3cdf2; padding:5px 10px; border-radius:6px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.16);">FastAPI</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#d3cdf2; padding:5px 10px; border-radius:6px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.16);">AWS ECS</span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#d8d8de; padding:5px 10px; border-radius:6px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14);">LangGraph</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#d8d8de; padding:5px 10px; border-radius:6px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14);">PGVector</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#d8d8de; padding:5px 10px; border-radius:6px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14);">FastAPI</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#d8d8de; padding:5px 10px; border-radius:6px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14);">AWS ECS</span>
           </div>
         </div>
       </div>
@@ -334,9 +386,9 @@
     <div data-reveal style="font-family:'JetBrains Mono',monospace; font-weight:500; font-size:13px; line-height:1.3; letter-spacing:1.5px; text-transform:uppercase; color: #6b6b6b;">About</div>
     <div style="display: grid; grid-template-columns: 1fr 0.82fr; gap: clamp(24px,5vw,56px); margin-top: 20px; align-items: center;" class="about-grid">
       <div data-reveal>
-        <h2 style="font-weight:340; font-size: clamp(30px,4.2vw,52px); line-height:1.08; letter-spacing:-0.02em; max-width: 15ch;">Production AI, from the model to the metal.</h2>
-        <p style="font-weight:340; font-size:clamp(19px,2.4vw,26px); line-height:1.38; letter-spacing:-0.3px; color: #2a2a2a; margin-top: 22px; max-width: 52ch;">I design and ship the full stack of intelligent systems — agentic orchestration, retrieval, sub-second voice, and the serverless AWS infrastructure that keeps them alive under real load.</p>
-        <p style="font-weight:330; font-size:18px; line-height:1.5; letter-spacing:-0.2px; color: #2a2a2a; margin-top: 18px; max-width: 52ch;">Based in India, working with teams building the next generation of enterprise AI.</p>
+        <h2 style="font-weight:340; font-size: clamp(30px,4.2vw,52px); line-height:1.08; letter-spacing:-0.02em; max-width: 15ch;">I own the stack, model to metal.</h2>
+        <p style="font-weight:340; font-size:clamp(19px,2.4vw,26px); line-height:1.38; letter-spacing:-0.3px; color: #2a2a2a; margin-top: 22px; max-width: 52ch;">I architect and ship the full lifecycle of production AI — agentic orchestration, retrieval, sub-second voice, and the serverless AWS backbone that keeps it reliable at scale.</p>
+        <p style="font-weight:330; font-size:18px; line-height:1.5; letter-spacing:-0.2px; color: #2a2a2a; margin-top: 18px; max-width: 52ch;">Five years, three companies, fifteen-plus systems in production. Based in India, building the next generation of enterprise AI.</p>
       </div>
       <div data-reveal style="position: relative; background: #f4f3f0; border: 1px solid #eae7e0; border-radius: 12px; padding: 14px;">
         <img src="assets/ravi.png" alt="Ravi Teja Pasupuleti" loading="lazy" style="display: block; width: 100%; height: clamp(360px,52vw,520px); object-fit: cover; object-position: 62% 42%; border-radius: 8px;">
@@ -408,6 +460,14 @@
 (function () {
   "use strict";
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- orchestrated hero load-in ---------- */
+  var rootEl = document.getElementById('root');
+  if (reduced) {
+    rootEl.classList.add('hero-in');
+  } else {
+    requestAnimationFrame(function () { requestAnimationFrame(function () { rootEl.classList.add('hero-in'); }); });
+  }
 
   /* ---------- data (ported from renderVals) ---------- */
   var marquee = ['SeekAlfred','Ngenux','GlobalData','TCS','AWS','LangGraph','Bedrock','Claude','OpenAI','Voice AI','RAG','Text2SQL','SageMaker','Kubernetes','FastAPI','PGVector','OpenSearch','Agentic AI'];
@@ -577,6 +637,43 @@
     onScroll();
   })();
 
+  /* ---------- scroll-spy: highlight active nav link ---------- */
+  (function setupScrollSpy() {
+    if (!('IntersectionObserver' in window)) return;
+    var links = Array.prototype.slice.call(document.querySelectorAll('.navlink'));
+    if (!links.length) return;
+    var map = {};
+    links.forEach(function (a) {
+      var id = a.getAttribute('href').slice(1);
+      var sec = document.getElementById(id);
+      if (sec) map[id] = a;
+    });
+    var visible = {};
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { visible[en.target.id] = en.isIntersecting ? en.intersectionRatio : 0; });
+      var bestId = null, bestRatio = 0;
+      Object.keys(visible).forEach(function (id) { if (visible[id] > bestRatio) { bestRatio = visible[id]; bestId = id; } });
+      links.forEach(function (a) { a.classList.remove('active'); });
+      if (bestId && map[bestId] && bestRatio > 0) map[bestId].classList.add('active');
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: [0, 0.25, 0.5, 1] });
+    Object.keys(map).forEach(function (id) { spy.observe(document.getElementById(id)); });
+  })();
+
+  /* ---------- mobile menu ---------- */
+  (function setupMobileMenu() {
+    var btn = document.getElementById('navToggle');
+    var menu = document.getElementById('mobileMenu');
+    if (!btn || !menu) return;
+    function close() { menu.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); btn.setAttribute('aria-label', 'Open menu'); }
+    function open() { menu.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); btn.setAttribute('aria-label', 'Close menu'); }
+    btn.addEventListener('click', function () {
+      if (menu.classList.contains('open')) close(); else open();
+    });
+    menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    window.addEventListener('resize', function () { if (window.innerWidth > 900) close(); });
+  })();
+
   /* ---------- card tilt ---------- */
   (function setupTilt() {
     if (reduced) return;
@@ -665,13 +762,13 @@
           vel.push([(Math.random()-0.5)*0.008, (Math.random()-0.5)*0.008, (Math.random()-0.5)*0.006]);
         }
         var pGeo = new THREE.BufferGeometry(); pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-        var pts = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0xcfc6ff, size: 0.12, transparent: true, opacity: 0.9 }));
+        var pts = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0xe9f0d2, size: 0.13, transparent: true, opacity: 0.92 }));
         scene2.add(pts);
         var lGeo = new THREE.BufferGeometry();
         var maxSeg = N * 6;
         var lPos = new Float32Array(maxSeg * 6);
         lGeo.setAttribute('position', new THREE.BufferAttribute(lPos, 3));
-        var lines = new THREE.LineSegments(lGeo, new THREE.LineBasicMaterial({ color: 0x8f82e0, transparent: true, opacity: 0.35 }));
+        var lines = new THREE.LineSegments(lGeo, new THREE.LineBasicMaterial({ color: 0x8f9a5f, transparent: true, opacity: 0.4 }));
         scene2.add(lines);
         var resize2 = function () {
           var w = nc.clientWidth || 600, h = nc.clientHeight || 300;

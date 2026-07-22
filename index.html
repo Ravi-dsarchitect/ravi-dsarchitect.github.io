@@ -34,7 +34,7 @@
   ::-webkit-scrollbar-thumb { background: #cfccc4; border-radius: 8px; }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   @keyframes dash { to { stroke-dashoffset: -200; } }
-  @keyframes livepulse { 0% { box-shadow: 0 0 0 0 rgba(216,241,106,0.55); } 70% { box-shadow: 0 0 0 7px rgba(216,241,106,0); } 100% { box-shadow: 0 0 0 0 rgba(216,241,106,0); } }
+  @keyframes livepulse { 0% { box-shadow: 0 0 0 0 rgba(23,163,74,0.5); } 70% { box-shadow: 0 0 0 7px rgba(23,163,74,0); } 100% { box-shadow: 0 0 0 0 rgba(23,163,74,0); } }
 
   /* anchor targets clear the 60px sticky nav */
   #top, section[id] { scroll-margin-top: 76px; }
@@ -192,27 +192,27 @@
 
   <!-- ===== FLAGSHIP — NAVY BLOCK ===== -->
   <section style="max-width:1280px; margin:clamp(56px,8vw,96px) auto 0; padding-left:clamp(20px,4vw,48px); padding-right:clamp(20px,4vw,48px);">
-    <div data-reveal class="block" style="border-radius:24px; padding:clamp(28px,5vw,72px); background: #0b0b10; color: #fff; position: relative; overflow: hidden;">
+    <div data-reveal class="block" style="border-radius:24px; padding:clamp(28px,5vw,72px); background: #cfe0f7; color: #0a0a0a; position: relative; overflow: hidden;">
       <canvas id="navyCanvas" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;"></canvas>
-      <div aria-hidden="true" style="position:absolute; inset:0; z-index:0; pointer-events:none; background: radial-gradient(120% 90% at 82% 8%, rgba(216,241,106,0.10), rgba(216,241,106,0.0) 42%), radial-gradient(90% 80% at 8% 100%, rgba(255,255,255,0.05), rgba(255,255,255,0) 46%);"></div>
-      <div style="font-family:'JetBrains Mono',monospace; font-weight:500; font-size:13px; line-height:1.3; letter-spacing:1.5px; text-transform:uppercase; color: #c7d59a; position: relative; z-index: 1; display:inline-flex; align-items:center; gap:8px;"><span style="width:7px; height:7px; border-radius:50%; background:#d8f16a; box-shadow:0 0 0 0 rgba(216,241,106,0.6); animation:livepulse 2.4s ease-out infinite;"></span>Flagship — Live</div>
+      <div aria-hidden="true" style="position:absolute; inset:0; z-index:0; pointer-events:none; background: radial-gradient(120% 90% at 82% 8%, rgba(255,255,255,0.55), rgba(255,255,255,0.0) 44%), radial-gradient(90% 80% at 6% 100%, rgba(30,42,120,0.07), rgba(30,42,120,0) 46%);"></div>
+      <div style="font-family:'JetBrains Mono',monospace; font-weight:500; font-size:13px; line-height:1.3; letter-spacing:1.5px; text-transform:uppercase; color: #24357f; position: relative; z-index: 1; display:inline-flex; align-items:center; gap:8px;"><span style="width:7px; height:7px; border-radius:50%; background:#17a34a; box-shadow:0 0 0 0 rgba(23,163,74,0.55); animation:livepulse 2.4s ease-out infinite;"></span>Flagship — Live</div>
       <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(24px,5vw,56px); margin-top: 18px; align-items: end; position: relative; z-index: 1;" class="about-grid">
         <div>
-          <h2 style="font-weight:340; font-size:clamp(34px,5.2vw,64px); line-height:1.08; letter-spacing:-0.02em; color: #fff; max-width: 16ch;">SeekAlfred — the AI Chief of Staff for the C-suite.</h2>
-          <p style="font-weight:340; font-size:clamp(19px,2.4vw,26px); line-height:1.38; letter-spacing:-0.3px; color: #cfcfd6; margin-top: 22px; max-width: 46ch;">Unifies fragmented signals across the marketing &amp; revenue stack — Google Ads, Meta, LinkedIn Ads, HubSpot — into decision-ready recommendations.</p>
+          <h2 style="font-weight:340; font-size:clamp(34px,5.2vw,64px); line-height:1.08; letter-spacing:-0.02em; color: #0a0a0a; max-width: 16ch;">SeekAlfred — the AI Chief of Staff for the C-suite.</h2>
+          <p style="font-weight:340; font-size:clamp(19px,2.4vw,26px); line-height:1.38; letter-spacing:-0.3px; color: #33406a; margin-top: 22px; max-width: 46ch;">Unifies fragmented signals across the marketing &amp; revenue stack — Google Ads, Meta, LinkedIn Ads, HubSpot — into decision-ready recommendations.</p>
           <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px;">
-            <a href="https://seekalfred.ai/" target="_blank" rel="noopener" class="pill-ondark">Visit seekalfred.ai →</a>
+            <a href="https://seekalfred.ai/" target="_blank" rel="noopener" class="pill-primary">Visit seekalfred.ai →</a>
           </div>
         </div>
         <div>
-          <div style="font-family:'JetBrains Mono',monospace; font-weight:400; font-size:12px; line-height:1.3; letter-spacing:0.8px; text-transform:uppercase; color: #9a9aa6; margin-bottom: 14px;">Modules I built</div>
+          <div style="font-family:'JetBrains Mono',monospace; font-weight:400; font-size:12px; line-height:1.3; letter-spacing:0.8px; text-transform:uppercase; color: #5a6796; margin-bottom: 14px;">Modules I built</div>
           <div style="display: grid; gap: 10px;">
-            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:14px 16px; font-weight:480; font-size:16px; letter-spacing:-0.2px; color:#fff;">Spend-Mix Optimization</div>
-            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:14px 16px; font-weight:480; font-size:16px; letter-spacing:-0.2px; color:#fff;">Creative Fatigue Detection</div>
-            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:14px 16px; font-weight:480; font-size:16px; letter-spacing:-0.2px; color:#fff;">AI Visibility Score</div>
+            <div style="background:#ffffff; border:1px solid rgba(30,42,120,0.12); border-radius:10px; padding:14px 16px; font-weight:480; font-size:16px; letter-spacing:-0.2px; color:#0a0a0a;">Spend-Mix Optimization</div>
+            <div style="background:#ffffff; border:1px solid rgba(30,42,120,0.12); border-radius:10px; padding:14px 16px; font-weight:480; font-size:16px; letter-spacing:-0.2px; color:#0a0a0a;">Creative Fatigue Detection</div>
+            <div style="background:#ffffff; border:1px solid rgba(30,42,120,0.12); border-radius:10px; padding:14px 16px; font-weight:480; font-size:16px; letter-spacing:-0.2px; color:#0a0a0a;">AI Visibility Score</div>
           </div>
           <div style="display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px;">
-            <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#d8d8de; padding:5px 10px; border-radius:6px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14);">LangGraph</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#d8d8de; padding:5px 10px; border-radius:6px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14);">PGVector</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#d8d8de; padding:5px 10px; border-radius:6px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14);">FastAPI</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#d8d8de; padding:5px 10px; border-radius:6px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14);">AWS ECS</span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#24357f; padding:5px 10px; border-radius:6px; background:rgba(255,255,255,0.72); border:1px solid rgba(30,42,120,0.15);">LangGraph</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#24357f; padding:5px 10px; border-radius:6px; background:rgba(255,255,255,0.72); border:1px solid rgba(30,42,120,0.15);">PGVector</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#24357f; padding:5px 10px; border-radius:6px; background:rgba(255,255,255,0.72); border:1px solid rgba(30,42,120,0.15);">FastAPI</span><span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.2px; color:#24357f; padding:5px 10px; border-radius:6px; background:rgba(255,255,255,0.72); border:1px solid rgba(30,42,120,0.15);">AWS ECS</span>
           </div>
         </div>
       </div>
@@ -762,13 +762,13 @@
           vel.push([(Math.random()-0.5)*0.008, (Math.random()-0.5)*0.008, (Math.random()-0.5)*0.006]);
         }
         var pGeo = new THREE.BufferGeometry(); pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-        var pts = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0xe9f0d2, size: 0.13, transparent: true, opacity: 0.92 }));
+        var pts = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0x1e2a78, size: 0.12, transparent: true, opacity: 0.62 }));
         scene2.add(pts);
         var lGeo = new THREE.BufferGeometry();
         var maxSeg = N * 6;
         var lPos = new Float32Array(maxSeg * 6);
         lGeo.setAttribute('position', new THREE.BufferAttribute(lPos, 3));
-        var lines = new THREE.LineSegments(lGeo, new THREE.LineBasicMaterial({ color: 0x8f9a5f, transparent: true, opacity: 0.4 }));
+        var lines = new THREE.LineSegments(lGeo, new THREE.LineBasicMaterial({ color: 0x3a4aa0, transparent: true, opacity: 0.22 }));
         scene2.add(lines);
         var resize2 = function () {
           var w = nc.clientWidth || 600, h = nc.clientHeight || 300;
